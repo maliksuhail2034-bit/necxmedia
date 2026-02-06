@@ -1,235 +1,310 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NECXMEDIA — Client Acquisition Funnels</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NECXMEDIA — Client Acquisition Systems</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray: #f3f3f3;
+      --accent: #5effa1;
+      --muted: #9ca3af;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Inter", Arial, sans-serif;
+      font-family: "Inter", sans-serif;
     }
 
     body {
-      line-height: 1.6;
-      color: #111;
-      background: #fff;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
     }
 
     section {
-      width: 100%;
-      padding: 60px 20px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
+      width: 100vw;
+      padding: 120px 6vw;
     }
 
     /* NAV */
     nav {
-      position: sticky;
+      position: fixed;
       top: 0;
       width: 100%;
-      background: #000;
-      color: #fff;
-      padding: 18px 24px;
+      padding: 24px 6vw;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 100;
     }
+
     nav .logo {
-      font-size: 22px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 1px;
+      color: var(--white);
     }
-    nav .cta-btn {
-      background: #fff;
-      color: #000;
-      padding: 10px 18px;
+
+    nav a {
+      color: var(--black);
+      background: var(--accent);
+      padding: 10px 20px;
+      border-radius: 999px;
       font-weight: 600;
-      border-radius: 4px;
+      text-decoration: none;
     }
 
     /* HERO */
     .hero {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding-top: 120px;
-      padding-bottom: 120px;
+      background: radial-gradient(circle at top, #111 0%, #000 70%);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
     }
+
+    .hero-content {
+      max-width: 900px;
+      z-index: 2;
+    }
+
     .hero h1 {
-      font-size: 42px;
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 800;
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-    .hero p {
-      font-size: 20px;
-      color: #ccc;
+      line-height: 1.1;
       margin-bottom: 24px;
     }
-    .hero .btn-primary {
-      background: #ff5a5f;
-      color: #fff;
-      padding: 14px 26px;
-      font-size: 18px;
-      font-weight: 600;
-      border-radius: 6px;
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .hero .cta {
       display: inline-block;
-      margin-top: 12px;
-    }
-
-    /* SOCIAL PROOF */
-    .proof {
-      background: #f9f9f9;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .proof p {
-      font-size: 18px;
-      margin-bottom: 12px;
-      color: #555;
-    }
-
-    /* BENEFITS */
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-    .benefit-box {
-      background: #fff;
-      border: 1px solid #ddd;
-      padding: 24px;
-      border-radius: 8px;
-    }
-    .benefit-box h4 {
-      font-size: 20px;
+      background: var(--accent);
+      color: var(--black);
+      padding: 16px 36px;
+      border-radius: 999px;
       font-weight: 700;
-      margin-bottom: 10px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: transform 0.3s ease;
     }
-    .benefit-box p {
-      font-size: 16px;
-      color: #444;
+
+    .hero .cta:hover {
+      transform: translateY(-3px);
+    }
+
+    /* HERO ILLUSTRATION */
+    .hero-illustration {
+      position: absolute;
+      right: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.15;
+      width: 700px;
+    }
+
+    /* TRUST */
+    .trust {
+      background: var(--gray);
+      text-align: center;
+      padding: 60px 6vw;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* OFFER */
+    .offer h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #555;
+      line-height: 1.6;
     }
 
     /* ABOUT */
-    .about h3 {
-      font-size: 32px;
-      font-weight: 700;
+    .about {
+      background: linear-gradient(180deg, #fff, #f7f7f7);
       text-align: center;
-      margin-bottom: 18px;
     }
+
+    .about h2 {
+      font-size: 3rem;
+      margin-bottom: 24px;
+    }
+
     .about p {
-      font-size: 18px;
-      line-height: 1.5;
-      color: #333;
-      text-align: center;
+      max-width: 900px;
       margin: auto;
-      max-width: 850px;
+      font-size: 1.2rem;
+      color: #444;
     }
 
-    /* CONTACT */
-    .contact {
+    /* CTA */
+    .final-cta {
+      background: var(--black);
+      color: var(--white);
       text-align: center;
-      background: #f2f2f2;
-    }
-    .contact h3 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    .contact p {
-      font-size: 18px;
-    }
-    .contact a {
-      font-weight: 600;
-      color: #000;
-      border-bottom: 2px solid #000;
     }
 
-    /* RESPONSIVE PADDING */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 32px;
-      }
-      .hero p {
-        font-size: 18px;
-      }
+    .final-cta h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .final-cta a {
+      display: inline-block;
+      margin-top: 24px;
+      background: var(--accent);
+      color: var(--black);
+      padding: 16px 40px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    footer {
+      background: #000;
+      color: #777;
+      text-align: center;
+      padding: 40px 0;
+      font-size: 0.9rem;
+    }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">NECXMEDIA</div>
-    <a href="#contact" class="cta-btn">Get Started</a>
-  </nav>
+<nav>
+  <div class="logo">NECXMEDIA</div>
+  <a href="#contact">Get Started</a>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h1>Stop Losing Leads. Start Converting High-Paying Clients.</h1>
-      <p>We build conversion-focused funnels and automated email systems that capture, nurture, and close leads — repeatedly & reliably.</p>
-      <a href="#contact" class="btn-primary">Book Your Strategy Call</a>
-    </div>
-  </section>
+<section class="hero">
+  <div class="hero-content fade-up">
+    <h1>Stop Losing Leads.<br>Build a System That Closes Clients.</h1>
+    <p>
+      We build conversion-focused funnels and automated email systems that
+      capture, nurture, and convert leads into paying clients — without chasing.
+    </p>
+    <a href="#contact" class="cta">Book a Strategy Call</a>
+  </div>
 
-  <!-- SOCIAL PROOF -->
-  <section class="proof">
-    <div class="container">
-      <p>Trusted by founders & coaches who scaled to 5-6 figures without cold outreach.</p>
-      <!-- You can replace the text above with real logos later -->
-    </div>
-  </section>
+  <!-- Futuristic SVG Illustration -->
+  <svg class="hero-illustration" viewBox="0 0 600 600">
+    <circle cx="300" cy="300" r="280" stroke="#5effa1" stroke-width="2" fill="none"/>
+    <circle cx="300" cy="300" r="200" stroke="#5effa1" stroke-width="1" fill="none"/>
+    <circle cx="300" cy="300" r="120" stroke="#5effa1" stroke-width="1" fill="none"/>
+  </svg>
+</section>
 
-  <!-- BENEFITS -->
-  <section>
-    <div class="container">
-      <h3 style="text-align:center; font-size:28px; margin-bottom:24px;">Your Business. Our Precision Engine.</h3>
-      <div class="benefits">
-        <div class="benefit-box">
-          <h4>High-Converting Funnels</h4>
-          <p>Landing pages designed specifically to turn clicks into booked calls.</p>
-        </div>
-        <div class="benefit-box">
-          <h4>Automated Email Systems</h4>
-          <p>Email sequences that nurture leads 24/7 and reduce churn.</p>
-        </div>
-        <div class="benefit-box">
-          <h4>Booked Calls, Not Cold Outreach</h4>
-          <p>No more chasing — we deliver leads that schedule themselves.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="trust">
+  Used by founders who want predictable growth — not guesswork.
+</section>
 
-  <!-- ABOUT -->
-  <section class="about">
-    <div class="container">
-      <h3>What We Do</h3>
-      <p>We build client acquisition systems that turn traffic into booked calls using high-conversion landing pages and email follow-ups. We help businesses capture leads, nurture them, and convert them into paying clients without chasing or manual work.</p>
+<section class="offer">
+  <h2 class="fade-up">Your Client Acquisition Engine</h2>
+  <div class="offer-grid">
+    <div class="card fade-up">
+      <h3>High-Converting Funnels</h3>
+      <p>Landing pages engineered to turn traffic into booked calls.</p>
     </div>
-  </section>
+    <div class="card fade-up">
+      <h3>Email Follow-Ups</h3>
+      <p>Automated sequences that build trust and close deals on autopilot.</p>
+    </div>
+    <div class="card fade-up">
+      <h3>Systemized Growth</h3>
+      <p>No cold chasing. No manual work. Just predictable acquisition.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h3>Ready To Scale?</h3>
-      <p>Email us at <a href="mailto:suhail@necxmedia.com">suhail@necxmedia.com</a></p>
-    </div>
-  </section>
+<section class="about">
+  <h2 class="fade-up">What We Do</h2>
+  <p class="fade-up">
+    We build client acquisition systems that turn traffic into booked calls using
+    high-conversion landing pages and email follow-ups. We help businesses capture
+    leads, nurture them, and convert them into paying clients without chasing or
+    manual work.
+  </p>
+</section>
+
+<section id="contact" class="final-cta">
+  <h2 class="fade-up">Ready to Scale Without Chaos?</h2>
+  <p class="fade-up">Reach out directly:</p>
+  <a href="mailto:suhail@necxmedia.com">suhail@necxmedia.com</a>
+</section>
+
+<footer>
+  © 2026 NECXMEDIA. All rights reserved.
+</footer>
+
+<script>
+  const elements = document.querySelectorAll(".fade-up");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
