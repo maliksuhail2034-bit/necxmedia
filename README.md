@@ -1,355 +1,322 @@
+<!i love you hareem>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NECXMEDIA — Client Acquisition Systems</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-/* =======================
-   VARIABLES
-======================= */
 :root{
   --bg:#050505;
-  --bg-soft:#0b0b0b;
+  --bg-soft:#0c0c0c;
   --white:#ffffff;
   --muted:#9ca3af;
   --accent:#5effa1;
-  --glass:rgba(255,255,255,0.08);
 }
 
-/* =======================
-   RESET
-======================= */
 *{margin:0;padding:0;box-sizing:border-box}
+
 html,body{
-  width:100%;
   background:var(--bg);
   color:white;
   font-family:Inter,sans-serif;
-  overflow-x:hidden;
-  cursor:none;
+  scroll-behavior:smooth;
 }
 
-/* =======================
-   CUSTOM CURSOR
-======================= */
-.cursor{
-  position:fixed;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:var(--accent);
-  pointer-events:none;
-  mix-blend-mode:screen;
-  transform:translate(-50%,-50%);
-  z-index:9999;
-  transition:transform 0.15s ease;
-}
-.cursor-glow{
-  position:fixed;
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:radial-gradient(circle,var(--accent),transparent 60%);
-  opacity:0.2;
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:9998;
-}
-
-/* =======================
-   NOISE
-======================= */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.04"/></svg>');
-  pointer-events:none;
-  z-index:1;
-}
-
-/* =======================
-   NAV
-======================= */
+/* ---------------- NAV ---------------- */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  height:80px;
-  padding:0 6vw;
+  height:76px;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(18px);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  background:rgba(0,0,0,0.55);
-  backdrop-filter:blur(22px);
+  padding:0 6vw;
   z-index:100;
 }
 
-.logo{
+nav .logo{
   font-weight:900;
   letter-spacing:1px;
 }
 
-.nav-btn{
-  padding:12px 30px;
+nav ul{
+  display:flex;
+  gap:32px;
+  list-style:none;
+}
+
+nav a{
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:600;
+}
+
+nav a:hover{
+  color:white;
+}
+
+.nav-cta{
   background:var(--accent);
   color:black;
+  padding:10px 24px;
   border-radius:999px;
   font-weight:800;
 }
 
-/* =======================
-   SECTIONS
-======================= */
-.section{
-  padding:160px 6vw;
-  position:relative;
-  z-index:2;
+/* ---------------- SECTIONS ---------------- */
+section{
+  padding:140px 6vw;
 }
 
-/* =======================
-   HERO
-======================= */
 .hero{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  overflow:hidden;
-}
-
-.hero-grid{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(transparent 95%,rgba(255,255,255,0.04) 100%),
-    linear-gradient(90deg,transparent 95%,rgba(255,255,255,0.04) 100%);
-  background-size:80px 80px;
-  animation:gridMove 20s linear infinite;
-}
-
-@keyframes gridMove{
-  from{transform:translateY(0)}
-  to{transform:translateY(80px)}
-}
-
-.hero-glow{
-  position:absolute;
-  inset:-40%;
-  background:radial-gradient(circle,rgba(94,255,161,0.18),transparent 60%);
-  animation:spin 30s linear infinite;
-}
-
-@keyframes spin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
 }
 
 .hero-inner{
   max-width:1100px;
-  position:relative;
 }
 
 .hero h1{
-  font-size:clamp(3.2rem,5vw,5rem);
+  font-size:clamp(3rem,5vw,4.8rem);
   font-weight:900;
   line-height:1.05;
-  margin-bottom:32px;
+  margin-bottom:28px;
 }
 
 .hero p{
   color:var(--muted);
-  font-size:1.25rem;
+  font-size:1.2rem;
   max-width:900px;
-  margin:0 auto 56px;
+  margin:0 auto 48px;
 }
 
 .cta{
-  padding:22px 64px;
+  display:inline-block;
+  padding:18px 50px;
   background:var(--accent);
   color:black;
   border-radius:999px;
   font-weight:900;
-  display:inline-block;
 }
 
-/* =======================
-   TRUST
-======================= */
-.trust{
-  text-align:center;
-  padding:80px 6vw;
-  color:var(--muted);
-  background:#0c0c0c;
+/* ---------------- SERVICES ---------------- */
+.services{
+  background:var(--bg-soft);
 }
 
-/* =======================
-   OFFER / 3D CARDS
-======================= */
-.offer h2{
-  text-align:center;
-  font-size:clamp(2.6rem,4vw,3.6rem);
-  margin-bottom:120px;
-}
-
-.offer-grid{
+.services-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:80px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:48px;
+  margin-top:80px;
 }
 
-.card{
-  background:linear-gradient(180deg,#0f0f0f,#050505);
-  border-radius:32px;
-  padding:64px;
-  transform-style:preserve-3d;
-  transition:0.4s ease;
-  box-shadow:0 80px 200px rgba(0,0,0,0.6);
+.service-card{
+  background:#0f0f0f;
+  padding:48px;
+  border-radius:28px;
+  cursor:pointer;
+  transition:0.3s ease;
 }
 
-.card h3{
-  font-size:1.5rem;
-  margin-bottom:18px;
+.service-card:hover{
+  transform:translateY(-10px);
 }
 
-.card p{
+.service-card h3{
+  margin-bottom:16px;
+}
+
+.service-card p{
+  color:var(--muted);
+}
+
+/* ---------------- SERVICE PAGES ---------------- */
+.service-page{
+  display:none;
+  max-width:1000px;
+  margin:0 auto;
+}
+
+.service-page.active{
+  display:block;
+}
+
+.service-page h2{
+  font-size:2.6rem;
+  margin-bottom:24px;
+}
+
+.service-page p{
   color:var(--muted);
   line-height:1.7;
+  margin-bottom:20px;
 }
 
-/* =======================
-   ABOUT
-======================= */
+/* ---------------- ABOUT ---------------- */
 .about{
   text-align:center;
 }
 
 .about-inner{
-  max-width:1000px;
+  max-width:900px;
   margin:0 auto;
 }
 
 .about p{
   color:var(--muted);
-  font-size:1.3rem;
-  margin-top:28px;
-  line-height:1.8;
+  font-size:1.2rem;
+  margin-top:24px;
 }
 
-/* =======================
-   FINAL CTA
-======================= */
-.final{
+/* ---------------- CONTACT ---------------- */
+.contact{
+  background:#000;
   text-align:center;
-  background:radial-gradient(circle at top,#121212,#000);
 }
 
-.final h2{
-  font-size:clamp(2.6rem,4vw,3.6rem);
-  margin-bottom:24px;
+.contact-box{
+  max-width:500px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
-.final p{
-  color:var(--muted);
-  margin-bottom:44px;
-}
-
-.final a{
-  padding:22px 64px;
+.contact-box a{
   background:var(--accent);
   color:black;
+  padding:16px;
   border-radius:999px;
-  font-weight:900;
+  font-weight:800;
+  text-decoration:none;
 }
 
-/* =======================
-   FOOTER
-======================= */
+/* ---------------- FOOTER ---------------- */
 footer{
-  padding:48px;
   text-align:center;
+  padding:40px;
   color:#777;
-  background:#000;
 }
 
-/* =======================
-   SCROLL REVEAL
-======================= */
-.fade{
-  opacity:0;
-  transform:translateY(60px);
-  transition:1.2s cubic-bezier(.22,.61,.36,1);
-}
-.fade.show{
-  opacity:1;
-  transform:none;
+/* ---------------- MOBILE FIXES ---------------- */
+@media(max-width:768px){
+  nav ul{display:none}
+  section{padding:110px 6vw}
+  .contact-box{width:100%}
 }
 </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
-<div class="cursor-glow"></div>
-
 <nav>
   <div class="logo">NECXMEDIA</div>
-  <a href="#contact" class="nav-btn magnetic">Get Started</a>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Started</a>
 </nav>
 
-<section class="hero section">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-inner fade">
+<!-- HOME -->
+<section id="home" class="hero">
+  <div class="hero-inner">
     <h1>Stop Losing Leads.<br>Start Closing Clients.</h1>
     <p>
-      We engineer client acquisition systems that quietly
-      turn attention into booked calls and compounding revenue.
+      We design client acquisition systems that turn attention
+      into booked calls and predictable revenue.
     </p>
-    <a href="#contact" class="cta magnetic">Book a Strategy Call</a>
+    <a href="#services" class="cta">View Services</a>
   </div>
 </section>
 
-<section class="trust">
-  Built for founders who value leverage, clarity, and systems.
-</section>
+<!-- SERVICES -->
+<section id="services" class="services">
+  <h2 style="text-align:center">Our Services</h2>
 
-<section class="offer section">
-  <h2 class="fade">Your Client Acquisition Engine</h2>
-  <div class="offer-grid">
-    <div class="card fade tilt">
-      <h3>Conversion Architecture</h3>
-      <p>Funnels designed with psychology, not templates.</p>
+  <div class="services-grid">
+    <div class="service-card" onclick="openService('funnels')">
+      <h3>High-Converting Funnels</h3>
+      <p>Landing pages engineered to convert attention into action.</p>
     </div>
-    <div class="card fade tilt">
-      <h3>Automated Follow-Ups</h3>
-      <p>Email systems that close while you sleep.</p>
+    <div class="service-card" onclick="openService('email')">
+      <h3>Email Automation Systems</h3>
+      <p>Automated follow-ups that close without manual effort.</p>
     </div>
-    <div class="card fade tilt">
-      <h3>Predictable Growth</h3>
-      <p>Systems that compound instead of burning out.</p>
+    <div class="service-card" onclick="openService('growth')">
+      <h3>Predictable Growth Systems</h3>
+      <p>Repeatable systems designed for long-term scale.</p>
     </div>
   </div>
-</section>
 
-<section class="about section">
-  <div class="about-inner fade">
-    <h2>What We Do</h2>
+  <!-- FUNNELS -->
+  <div id="funnels" class="service-page">
+    <h2>High-Converting Funnels</h2>
     <p>
-      NECXMEDIA builds silent, scalable acquisition systems for
-      founders who want consistent growth without chaos.
+      We design funnels that guide prospects through a clear,
+      psychology-driven journey — from first impression to booked call.
+    </p>
+    <p>
+      Every page is built with intent: messaging hierarchy, trust signals,
+      and friction-less conversion paths.
+    </p>
+  </div>
+
+  <!-- EMAIL -->
+  <div id="email" class="service-page">
+    <h2>Email Automation Systems</h2>
+    <p>
+      We build automated email sequences that nurture leads,
+      handle objections, and follow up consistently.
+    </p>
+    <p>
+      Your sales process runs in the background — without manual chasing.
+    </p>
+  </div>
+
+  <!-- GROWTH -->
+  <div id="growth" class="service-page">
+    <h2>Predictable Growth Systems</h2>
+    <p>
+      We connect funnels, email, and tracking into a single
+      acquisition system that scales without chaos.
+    </p>
+    <p>
+      No guesswork. No spikes. Just steady, measurable growth.
     </p>
   </div>
 </section>
 
-<section id="contact" class="final section">
-  <h2 class="fade">Ready to Scale?</h2>
-  <p class="fade">Reach us directly</p>
-  <a href="mailto:suhail@necxmedia.com" class="fade magnetic">suhail@necxmedia.com</a>
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="about-inner">
+    <h2>About NECXMEDIA</h2>
+    <p>
+      NECXMEDIA builds acquisition systems for founders who want clarity,
+      leverage, and consistent growth — not tactics that burn out.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2>Ready to Scale?</h2>
+  <div class="contact-box">
+    <a href="mailto:suhail@necxmedia.com">suhail@necxmedia.com</a>
+  </div>
 </section>
 
 <footer>
@@ -357,49 +324,12 @@ footer{
 </footer>
 
 <script>
-/* CURSOR */
-const cursor=document.querySelector('.cursor');
-const glow=document.querySelector('.cursor-glow');
-
-document.addEventListener('mousemove',e=>{
-  cursor.style.left=glow.style.left=e.clientX+'px';
-  cursor.style.top=glow.style.top=e.clientY+'px';
-});
-
-/* MAGNETIC BUTTONS */
-document.querySelectorAll('.magnetic').forEach(el=>{
-  el.addEventListener('mousemove',e=>{
-    const r=el.getBoundingClientRect();
-    el.style.transform=
-      `translate(${(e.clientX-r.left-r.width/2)/6}px,
-                 ${(e.clientY-r.top-r.height/2)/6}px) scale(1.08)`;
-  });
-  el.addEventListener('mouseleave',()=>{
-    el.style.transform='translate(0,0) scale(1)';
-  });
-});
-
-/* 3D TILT CARDS */
-document.querySelectorAll('.tilt').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left-r.width/2)/20;
-    const y=(e.clientY-r.top-r.height/2)/20;
-    card.style.transform=`rotateY(${x}deg) rotateX(${-y}deg) translateY(-12px)`;
-  });
-  card.addEventListener('mouseleave',()=>{
-    card.style.transform='none';
-  });
-});
-
-/* SCROLL REVEAL */
-const els=document.querySelectorAll('.fade');
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add('show');
-  });
-},{threshold:0.2});
-els.forEach(el=>obs.observe(el));
+function openService(id){
+  document.querySelectorAll('.service-page')
+    .forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
 </script>
 
 </body>
