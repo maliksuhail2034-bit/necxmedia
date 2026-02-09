@@ -7,180 +7,211 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+/* =======================
+   CORE VARIABLES
+======================= */
 :root{
-  --black:#050505;
+  --bg:#050505;
+  --bg-soft:#0b0b0b;
   --white:#ffffff;
-  --gray:#f4f4f4;
-  --accent:#5effa1;
   --muted:#9ca3af;
+  --accent:#5effa1;
   --glass:rgba(255,255,255,0.08);
+  --blur:blur(20px);
 }
 
-/* RESET */
+/* =======================
+   RESET
+======================= */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{
   width:100%;
-  overflow-x:hidden;
+  background:var(--bg);
+  color:white;
   font-family:Inter,sans-serif;
-  background:white;
+  overflow-x:hidden;
   scroll-behavior:smooth;
 }
 
-a{color:inherit;text-decoration:none}
-
-/* GLOBAL */
+/* =======================
+   GLOBAL
+======================= */
 .section{
-  width:100%;
-  padding:130px 6vw;
   position:relative;
+  padding:160px 6vw;
+  z-index:2;
 }
 
-.center{text-align:center}
+h1,h2,h3{
+  letter-spacing:-0.02em;
+}
 
-/* NAV */
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* =======================
+   NOISE OVERLAY
+======================= */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.04"/></svg>');
+  pointer-events:none;
+  z-index:1;
+}
+
+/* =======================
+   NAV
+======================= */
 nav{
   position:fixed;
-  top:0;left:0;
+  top:0;
   width:100%;
-  height:72px;
-  background:rgba(0,0,0,0.55);
-  backdrop-filter:blur(18px);
+  height:80px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   padding:0 6vw;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(22px);
   z-index:100;
 }
 
 .logo{
-  color:white;
   font-weight:900;
   letter-spacing:1px;
 }
 
 .nav-btn{
+  padding:12px 28px;
   background:var(--accent);
   color:black;
-  padding:10px 26px;
   border-radius:999px;
-  font-weight:700;
-  transition:0.35s cubic-bezier(.22,.61,.36,1);
-}
-.nav-btn:hover{
-  transform:translateY(-2px) scale(1.05);
-  box-shadow:0 16px 40px rgba(94,255,161,0.45);
+  font-weight:800;
+  transition:0.4s cubic-bezier(.22,.61,.36,1);
 }
 
-/* HERO */
+.nav-btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 20px 80px rgba(94,255,161,0.6);
+}
+
+/* =======================
+   HERO
+======================= */
 .hero{
   min-height:100vh;
-  background:
-    radial-gradient(circle at 50% 0%, #1b1b1b 0%, #000 65%);
   display:flex;
   align-items:center;
   justify-content:center;
-  color:white;
+  text-align:center;
+  position:relative;
   overflow:hidden;
 }
 
-.hero::before{
-  content:"";
+.hero-bg{
   position:absolute;
-  inset:-35%;
+  inset:-40%;
   background:
     radial-gradient(circle at center, rgba(94,255,161,0.18), transparent 60%);
-  animation:slowSpin 26s linear infinite;
+  animation:rotate 40s linear infinite;
 }
 
-@keyframes slowSpin{
+@keyframes rotate{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
 }
 
 .hero-inner{
   max-width:1100px;
-  text-align:center;
   position:relative;
-  z-index:2;
+  z-index:3;
 }
 
 .hero h1{
-  font-size:clamp(3rem,5vw,4.8rem);
+  font-size:clamp(3.2rem,5vw,5rem);
   font-weight:900;
   line-height:1.05;
-  margin-bottom:28px;
-  letter-spacing:-1px;
+  margin-bottom:32px;
 }
 
 .hero p{
-  font-size:1.2rem;
+  font-size:1.25rem;
   color:var(--muted);
   max-width:900px;
-  margin:0 auto 50px;
+  margin:0 auto 56px;
 }
 
-.hero .cta{
+.cta{
+  padding:22px 60px;
   background:var(--accent);
   color:black;
-  padding:20px 52px;
   border-radius:999px;
-  font-weight:800;
+  font-weight:900;
   display:inline-block;
-  transition:0.4s cubic-bezier(.22,.61,.36,1);
-}
-.hero .cta:hover{
-  transform:scale(1.07);
-  box-shadow:0 22px 70px rgba(94,255,161,0.55);
+  transition:0.5s cubic-bezier(.22,.61,.36,1);
 }
 
-/* TRUST */
+.cta:hover{
+  transform:scale(1.1);
+  box-shadow:0 30px 120px rgba(94,255,161,0.7);
+}
+
+/* =======================
+   TRUST STRIP
+======================= */
 .trust{
-  background:var(--gray);
-  padding:70px 6vw;
-}
-.trust p{
+  background:#0c0c0c;
   text-align:center;
-  font-weight:600;
-  opacity:0.9;
-  letter-spacing:0.3px;
+  padding:80px 6vw;
+  color:var(--muted);
+  letter-spacing:0.4px;
 }
 
-/* OFFER */
+/* =======================
+   OFFER CARDS (3D)
+======================= */
+.offer{
+  background:linear-gradient(180deg,#050505,#0b0b0b);
+}
+
 .offer h2{
-  font-size:clamp(2.4rem,4vw,3.4rem);
-  margin-bottom:90px;
   text-align:center;
+  font-size:clamp(2.6rem,4vw,3.6rem);
+  margin-bottom:120px;
 }
 
 .offer-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:60px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:80px;
 }
 
 .card{
-  background:white;
-  padding:60px;
-  border-radius:30px;
-  box-shadow:0 50px 120px rgba(0,0,0,0.08);
+  background:linear-gradient(180deg,#0e0e0e,#060606);
+  border-radius:32px;
+  padding:64px;
   position:relative;
-  transition:0.45s cubic-bezier(.22,.61,.36,1);
+  transform-style:preserve-3d;
+  transition:0.6s cubic-bezier(.22,.61,.36,1);
+  box-shadow:0 60px 200px rgba(0,0,0,0.5);
 }
 
 .card::before{
   content:"";
   position:absolute;
   inset:0;
-  border-radius:30px;
-  background:
-    linear-gradient(135deg, transparent 40%, rgba(94,255,161,0.15));
+  border-radius:32px;
+  border:1px solid rgba(94,255,161,0.25);
   opacity:0;
-  transition:0.45s ease;
+  transition:0.6s ease;
 }
 
 .card:hover{
-  transform:translateY(-14px) scale(1.01);
-  box-shadow:0 80px 180px rgba(0,0,0,0.16);
+  transform:translateY(-20px) scale(1.02);
 }
 
 .card:hover::before{
@@ -188,87 +219,89 @@ nav{
 }
 
 .card h3{
-  margin-bottom:16px;
-  font-size:1.35rem;
-  font-weight:700;
-}
-.card p{
-  color:#444;
-  line-height:1.6;
+  font-size:1.5rem;
+  margin-bottom:18px;
 }
 
-/* ABOUT */
+.card p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* =======================
+   ABOUT
+======================= */
 .about{
-  background:linear-gradient(180deg,#ffffff,#f6f6f6);
+  background:#050505;
+  text-align:center;
 }
 
 .about-inner{
   max-width:1000px;
   margin:0 auto;
-  text-align:center;
 }
 
 .about p{
-  font-size:1.2rem;
-  line-height:1.75;
-  margin-top:26px;
+  font-size:1.3rem;
+  color:var(--muted);
+  margin-top:32px;
+  line-height:1.8;
 }
 
-/* FINAL CTA */
+/* =======================
+   FINAL CTA
+======================= */
 .final{
-  background:radial-gradient(circle at top, #111 0%, #000 70%);
-  color:white;
+  background:
+    radial-gradient(circle at top, #121212, #000);
   text-align:center;
-  padding:160px 6vw;
 }
 
 .final h2{
-  font-size:clamp(2.4rem,4vw,3.4rem);
+  font-size:clamp(2.6rem,4vw,3.6rem);
   margin-bottom:24px;
 }
 
 .final p{
   color:var(--muted);
-  margin-bottom:36px;
+  margin-bottom:44px;
 }
 
 .final a{
+  padding:22px 64px;
   background:var(--accent);
   color:black;
-  padding:20px 56px;
   border-radius:999px;
-  font-weight:800;
-  display:inline-block;
-  transition:0.4s cubic-bezier(.22,.61,.36,1);
+  font-weight:900;
+  transition:0.5s cubic-bezier(.22,.61,.36,1);
 }
+
 .final a:hover{
-  transform:scale(1.08);
-  box-shadow:0 24px 80px rgba(94,255,161,0.6);
+  transform:scale(1.1);
+  box-shadow:0 30px 120px rgba(94,255,161,0.7);
 }
 
-/* FOOTER */
+/* =======================
+   FOOTER
+======================= */
 footer{
-  background:black;
-  color:#777;
+  padding:48px;
   text-align:center;
-  padding:44px 6vw;
-  font-size:0.9rem;
+  color:#777;
+  background:#000;
 }
 
-/* SCROLL REVEAL */
+/* =======================
+   SCROLL FADE
+======================= */
 .fade{
   opacity:0;
-  transform:translateY(50px);
-  transition:1s cubic-bezier(.22,.61,.36,1);
+  transform:translateY(60px);
+  transition:1.2s cubic-bezier(.22,.61,.36,1);
 }
 .fade.show{
   opacity:1;
   transform:none;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .section{padding:100px 6vw}
 }
 </style>
 </head>
@@ -281,34 +314,35 @@ footer{
 </nav>
 
 <section class="hero section">
+  <div class="hero-bg"></div>
   <div class="hero-inner fade">
     <h1>Stop Losing Leads.<br>Start Closing Clients.</h1>
     <p>
-      We build conversion-focused funnels and automated email systems
-      that quietly turn attention into booked calls and paying clients.
+      We engineer client acquisition systems that quietly turn attention
+      into booked calls and long-term revenue.
     </p>
     <a href="#contact" class="cta">Book a Strategy Call</a>
   </div>
 </section>
 
 <section class="trust">
-  <p>Built for founders who want predictable, systemized growth — not guesswork.</p>
+  Built for founders who want leverage, not hustle.
 </section>
 
 <section class="offer section">
   <h2 class="fade">Your Client Acquisition Engine</h2>
   <div class="offer-grid">
     <div class="card fade">
-      <h3>High-Converting Funnels</h3>
-      <p>Strategic landing pages designed to move visitors into booked calls.</p>
+      <h3>Conversion Architecture</h3>
+      <p>Funnels designed with psychology, not templates.</p>
     </div>
     <div class="card fade">
-      <h3>Email Automations</h3>
-      <p>Intelligent follow-ups that nurture leads and close deals on autopilot.</p>
+      <h3>Automated Follow-Ups</h3>
+      <p>Email systems that close while you sleep.</p>
     </div>
     <div class="card fade">
       <h3>Predictable Growth</h3>
-      <p>A repeatable system that scales without chaos, chasing, or burnout.</p>
+      <p>A system that compounds instead of burns out.</p>
     </div>
   </div>
 </section>
@@ -317,16 +351,15 @@ footer{
   <div class="about-inner fade">
     <h2>What We Do</h2>
     <p>
-      NECXMEDIA builds complete client acquisition systems —
-      combining psychology-driven design, automation, and messaging
-      so your business grows consistently, quietly, and sustainably.
+      NECXMEDIA builds silent, scalable acquisition systems for founders
+      who value clarity, leverage, and long-term growth.
     </p>
   </div>
 </section>
 
-<section id="contact" class="final">
+<section id="contact" class="final section">
   <h2 class="fade">Ready to Scale?</h2>
-  <p class="fade">Let’s talk.</p>
+  <p class="fade">Reach us directly</p>
   <a href="mailto:suhail@necxmedia.com" class="fade">suhail@necxmedia.com</a>
 </section>
 
