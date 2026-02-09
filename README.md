@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,7 +9,7 @@
 
 <style>
 /* =======================
-   CORE VARIABLES
+   VARIABLES
 ======================= */
 :root{
   --bg:#050505;
@@ -17,7 +18,6 @@
   --muted:#9ca3af;
   --accent:#5effa1;
   --glass:rgba(255,255,255,0.08);
-  --blur:blur(20px);
 }
 
 /* =======================
@@ -30,29 +30,38 @@ html,body{
   color:white;
   font-family:Inter,sans-serif;
   overflow-x:hidden;
-  scroll-behavior:smooth;
+  cursor:none;
 }
 
 /* =======================
-   GLOBAL
+   CUSTOM CURSOR
 ======================= */
-.section{
-  position:relative;
-  padding:160px 6vw;
-  z-index:2;
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:var(--accent);
+  pointer-events:none;
+  mix-blend-mode:screen;
+  transform:translate(-50%,-50%);
+  z-index:9999;
+  transition:transform 0.15s ease;
 }
-
-h1,h2,h3{
-  letter-spacing:-0.02em;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
+.cursor-glow{
+  position:fixed;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--accent),transparent 60%);
+  opacity:0.2;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:9998;
 }
 
 /* =======================
-   NOISE OVERLAY
+   NOISE
 ======================= */
 body::before{
   content:"";
@@ -71,10 +80,10 @@ nav{
   top:0;
   width:100%;
   height:80px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   padding:0 6vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   background:rgba(0,0,0,0.55);
   backdrop-filter:blur(22px);
   z-index:100;
@@ -86,17 +95,20 @@ nav{
 }
 
 .nav-btn{
-  padding:12px 28px;
+  padding:12px 30px;
   background:var(--accent);
   color:black;
   border-radius:999px;
   font-weight:800;
-  transition:0.4s cubic-bezier(.22,.61,.36,1);
 }
 
-.nav-btn:hover{
-  transform:scale(1.08);
-  box-shadow:0 20px 80px rgba(94,255,161,0.6);
+/* =======================
+   SECTIONS
+======================= */
+.section{
+  padding:160px 6vw;
+  position:relative;
+  z-index:2;
 }
 
 /* =======================
@@ -108,19 +120,32 @@ nav{
   align-items:center;
   justify-content:center;
   text-align:center;
-  position:relative;
   overflow:hidden;
 }
 
-.hero-bg{
+.hero-grid{
   position:absolute;
-  inset:-40%;
+  inset:0;
   background:
-    radial-gradient(circle at center, rgba(94,255,161,0.18), transparent 60%);
-  animation:rotate 40s linear infinite;
+    linear-gradient(transparent 95%,rgba(255,255,255,0.04) 100%),
+    linear-gradient(90deg,transparent 95%,rgba(255,255,255,0.04) 100%);
+  background-size:80px 80px;
+  animation:gridMove 20s linear infinite;
 }
 
-@keyframes rotate{
+@keyframes gridMove{
+  from{transform:translateY(0)}
+  to{transform:translateY(80px)}
+}
+
+.hero-glow{
+  position:absolute;
+  inset:-40%;
+  background:radial-gradient(circle,rgba(94,255,161,0.18),transparent 60%);
+  animation:spin 30s linear infinite;
+}
+
+@keyframes spin{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
 }
@@ -128,7 +153,6 @@ nav{
 .hero-inner{
   max-width:1100px;
   position:relative;
-  z-index:3;
 }
 
 .hero h1{
@@ -139,45 +163,34 @@ nav{
 }
 
 .hero p{
-  font-size:1.25rem;
   color:var(--muted);
+  font-size:1.25rem;
   max-width:900px;
   margin:0 auto 56px;
 }
 
 .cta{
-  padding:22px 60px;
+  padding:22px 64px;
   background:var(--accent);
   color:black;
   border-radius:999px;
   font-weight:900;
   display:inline-block;
-  transition:0.5s cubic-bezier(.22,.61,.36,1);
-}
-
-.cta:hover{
-  transform:scale(1.1);
-  box-shadow:0 30px 120px rgba(94,255,161,0.7);
 }
 
 /* =======================
-   TRUST STRIP
+   TRUST
 ======================= */
 .trust{
-  background:#0c0c0c;
   text-align:center;
   padding:80px 6vw;
   color:var(--muted);
-  letter-spacing:0.4px;
+  background:#0c0c0c;
 }
 
 /* =======================
-   OFFER CARDS (3D)
+   OFFER / 3D CARDS
 ======================= */
-.offer{
-  background:linear-gradient(180deg,#050505,#0b0b0b);
-}
-
 .offer h2{
   text-align:center;
   font-size:clamp(2.6rem,4vw,3.6rem);
@@ -191,31 +204,12 @@ nav{
 }
 
 .card{
-  background:linear-gradient(180deg,#0e0e0e,#060606);
+  background:linear-gradient(180deg,#0f0f0f,#050505);
   border-radius:32px;
   padding:64px;
-  position:relative;
   transform-style:preserve-3d;
-  transition:0.6s cubic-bezier(.22,.61,.36,1);
-  box-shadow:0 60px 200px rgba(0,0,0,0.5);
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:32px;
-  border:1px solid rgba(94,255,161,0.25);
-  opacity:0;
-  transition:0.6s ease;
-}
-
-.card:hover{
-  transform:translateY(-20px) scale(1.02);
-}
-
-.card:hover::before{
-  opacity:1;
+  transition:0.4s ease;
+  box-shadow:0 80px 200px rgba(0,0,0,0.6);
 }
 
 .card h3{
@@ -232,7 +226,6 @@ nav{
    ABOUT
 ======================= */
 .about{
-  background:#050505;
   text-align:center;
 }
 
@@ -242,9 +235,9 @@ nav{
 }
 
 .about p{
-  font-size:1.3rem;
   color:var(--muted);
-  margin-top:32px;
+  font-size:1.3rem;
+  margin-top:28px;
   line-height:1.8;
 }
 
@@ -252,9 +245,8 @@ nav{
    FINAL CTA
 ======================= */
 .final{
-  background:
-    radial-gradient(circle at top, #121212, #000);
   text-align:center;
+  background:radial-gradient(circle at top,#121212,#000);
 }
 
 .final h2{
@@ -273,12 +265,6 @@ nav{
   color:black;
   border-radius:999px;
   font-weight:900;
-  transition:0.5s cubic-bezier(.22,.61,.36,1);
-}
-
-.final a:hover{
-  transform:scale(1.1);
-  box-shadow:0 30px 120px rgba(94,255,161,0.7);
 }
 
 /* =======================
@@ -292,7 +278,7 @@ footer{
 }
 
 /* =======================
-   SCROLL FADE
+   SCROLL REVEAL
 ======================= */
 .fade{
   opacity:0;
@@ -308,41 +294,45 @@ footer{
 
 <body>
 
+<div class="cursor"></div>
+<div class="cursor-glow"></div>
+
 <nav>
   <div class="logo">NECXMEDIA</div>
-  <a href="#contact" class="nav-btn">Get Started</a>
+  <a href="#contact" class="nav-btn magnetic">Get Started</a>
 </nav>
 
 <section class="hero section">
-  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
   <div class="hero-inner fade">
     <h1>Stop Losing Leads.<br>Start Closing Clients.</h1>
     <p>
-      We engineer client acquisition systems that quietly turn attention
-      into booked calls and long-term revenue.
+      We engineer client acquisition systems that quietly
+      turn attention into booked calls and compounding revenue.
     </p>
-    <a href="#contact" class="cta">Book a Strategy Call</a>
+    <a href="#contact" class="cta magnetic">Book a Strategy Call</a>
   </div>
 </section>
 
 <section class="trust">
-  Built for founders who want leverage, not hustle.
+  Built for founders who value leverage, clarity, and systems.
 </section>
 
 <section class="offer section">
   <h2 class="fade">Your Client Acquisition Engine</h2>
   <div class="offer-grid">
-    <div class="card fade">
+    <div class="card fade tilt">
       <h3>Conversion Architecture</h3>
       <p>Funnels designed with psychology, not templates.</p>
     </div>
-    <div class="card fade">
+    <div class="card fade tilt">
       <h3>Automated Follow-Ups</h3>
       <p>Email systems that close while you sleep.</p>
     </div>
-    <div class="card fade">
+    <div class="card fade tilt">
       <h3>Predictable Growth</h3>
-      <p>A system that compounds instead of burns out.</p>
+      <p>Systems that compound instead of burning out.</p>
     </div>
   </div>
 </section>
@@ -351,8 +341,8 @@ footer{
   <div class="about-inner fade">
     <h2>What We Do</h2>
     <p>
-      NECXMEDIA builds silent, scalable acquisition systems for founders
-      who value clarity, leverage, and long-term growth.
+      NECXMEDIA builds silent, scalable acquisition systems for
+      founders who want consistent growth without chaos.
     </p>
   </div>
 </section>
@@ -360,7 +350,7 @@ footer{
 <section id="contact" class="final section">
   <h2 class="fade">Ready to Scale?</h2>
   <p class="fade">Reach us directly</p>
-  <a href="mailto:suhail@necxmedia.com" class="fade">suhail@necxmedia.com</a>
+  <a href="mailto:suhail@necxmedia.com" class="fade magnetic">suhail@necxmedia.com</a>
 </section>
 
 <footer>
@@ -368,10 +358,46 @@ footer{
 </footer>
 
 <script>
-const els=document.querySelectorAll(".fade");
+/* CURSOR */
+const cursor=document.querySelector('.cursor');
+const glow=document.querySelector('.cursor-glow');
+
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=glow.style.left=e.clientX+'px';
+  cursor.style.top=glow.style.top=e.clientY+'px';
+});
+
+/* MAGNETIC BUTTONS */
+document.querySelectorAll('.magnetic').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    el.style.transform=
+      `translate(${(e.clientX-r.left-r.width/2)/6}px,
+                 ${(e.clientY-r.top-r.height/2)/6}px) scale(1.08)`;
+  });
+  el.addEventListener('mouseleave',()=>{
+    el.style.transform='translate(0,0) scale(1)';
+  });
+});
+
+/* 3D TILT CARDS */
+document.querySelectorAll('.tilt').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)/20;
+    const y=(e.clientY-r.top-r.height/2)/20;
+    card.style.transform=`rotateY(${x}deg) rotateX(${-y}deg) translateY(-12px)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='none';
+  });
+});
+
+/* SCROLL REVEAL */
+const els=document.querySelectorAll('.fade');
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add("show");
+    if(e.isIntersecting) e.target.classList.add('show');
   });
 },{threshold:0.2});
 els.forEach(el=>obs.observe(el));
