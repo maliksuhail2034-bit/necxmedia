@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NECXMEDIA — SaaS Revenue Infrastructure</title>
+<title>NECXMEDIA — Intelligent Client Acquisition Systems</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -116,7 +116,7 @@ nav ul a:hover{color:var(--white)}
   box-shadow:0 0 60px var(--glow);
 }
 
-/* GRID */
+/* SERVICES */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -128,29 +128,52 @@ nav ul a:hover{color:var(--white)}
   border-radius:28px;
   border:1px solid rgba(255,255,255,.04);
   transition:.45s ease;
+  cursor:pointer;
   position:relative;
 }
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:28px;
+  background:linear-gradient(120deg,transparent,rgba(94,255,161,.08),transparent);
+  opacity:0;
+  transition:.4s;
+}
+.card:hover::before{opacity:1}
 .card:hover{
   transform:translateY(-14px);
   box-shadow:0 50px 120px rgba(0,0,0,.7);
 }
 .card h3{margin-bottom:14px}
 
-/* PANEL */
-.panel{
+/* SERVICE DETAILS */
+.service{
   background:var(--panel);
   padding:90px;
   border-radius:36px;
   margin-top:100px;
   border:1px solid rgba(255,255,255,.04);
 }
-.panel p{
+.service h2{
+  margin-bottom:20px;
+}
+.service p{
   color:var(--muted);
   font-size:1.15rem;
   max-width:920px;
   line-height:1.65;
 }
 
+/* ABOUT */
+.about p{
+  max-width:920px;
+  margin:30px auto;
+  color:var(--muted);
+  font-size:1.15rem;
+}
+
+/* CONTACT */
 .contact-box{
   max-width:720px;
   margin:70px auto 0;
@@ -168,16 +191,18 @@ nav ul a:hover{color:var(--white)}
   font-size:1.1rem;
 }
 
+/* FOOTER */
 footer{
   padding:40px;
   text-align:center;
   color:#666;
 }
 
+/* MOBILE */
 @media(max-width:768px){
   nav ul{display:none}
   section{padding:110px 6vw}
-  .panel{padding:50px 28px}
+  .service{padding:50px 28px}
   .contact-box{padding:48px 28px}
 }
 </style>
@@ -188,116 +213,96 @@ footer{
 <nav>
   <div class="logo">NECXMEDIA</div>
   <ul>
-    <li><a href="#system">System</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#philosophy">Philosophy</a></li>
-    <li><a href="#apply">Apply</a></li>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Systems</a></li>
+    <li><a href="#about">Philosophy</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#apply" class="nav-cta">Apply</a>
+  <a href="#contact" class="nav-cta">Initiate</a>
 </nav>
 
-<section class="hero">
+<section id="home" class="hero">
   <div style="width:100%">
     <h1>
-      Predictable Demos.<br>
-      <span>Lower CAC. Higher LTV.</span>
+      Build Once.<br>
+      <span>Scale Forever.</span>
     </h1>
     <p>
-      We install automated revenue infrastructure for SaaS founders
-      doing $10k–$100k/month who want consistent demo bookings
-      without increasing ad spend or relying on manual outreach.
+      NECXMEDIA engineers intelligent client acquisition systems
+      for founders who want leverage, not hustle.
     </p>
-    <a href="#apply" class="cta">Apply For Revenue Install</a>
+    <a href="#contact" class="cta">Deploy Growth System</a>
   </div>
 </section>
 
-<section id="system">
-  <h2 class="center">The SaaS Revenue Infrastructure System™</h2>
+<section id="services">
+  <h2 class="center">Core Systems</h2>
 
   <div class="grid" style="margin-top:90px">
-
-    <div class="card">
-      <h3>Layer 1 — Attraction Engine</h3>
-      <p>Authority positioning that pulls in high-intent prospects instead of random traffic.</p>
+    <div class="card" onclick="scrollToSection('funnels')">
+      <h3>Conversion Architecture</h3>
+      <p>Funnels designed to eliminate friction and force clarity.</p>
     </div>
-
-    <div class="card">
-      <h3>Layer 2 — Conversion Architecture</h3>
-      <p>Strategic landing pages engineered to pre-sell, qualify, and drive demo intent.</p>
+    <div class="card" onclick="scrollToSection('email')">
+      <h3>Automated Monetization</h3>
+      <p>Email systems that convert attention into cash.</p>
     </div>
-
-    <div class="card">
-      <h3>Layer 3 — Automated Pre-Sell</h3>
-      <p>Email systems that educate, eliminate objections, and increase demo show-up rates.</p>
+    <div class="card" onclick="scrollToSection('growth')">
+      <h3>Predictable Scale</h3>
+      <p>Systems that compound instead of breaking.</p>
     </div>
-
   </div>
 
-  <div class="panel">
-    <h2>Why This Works</h2>
+  <div id="funnels" class="service">
+    <h2>Conversion Architecture</h2>
     <p>
-      Most SaaS founders send cold traffic directly to a demo page
-      and hope it converts.
-      We build structured conversion paths that educate prospects
-      before they ever speak to you — increasing close rates,
-      lowering CAC, and filtering out low-quality demos.
+      We design funnels the way engineers design systems —
+      removing noise, isolating variables, and guiding prospects
+      toward a single inevitable decision.
+    </p>
+  </div>
+
+  <div id="email" class="service">
+    <h2>Automated Monetization</h2>
+    <p>
+      Intelligent email sequences that educate, disarm objections,
+      and close deals without dependency on daily effort.
+    </p>
+  </div>
+
+  <div id="growth" class="service">
+    <h2>Predictable Scale</h2>
+    <p>
+      Funnels, messaging, and feedback loops combined into
+      a system designed to scale without chaos.
     </p>
   </div>
 </section>
 
-<section id="results">
-  <h2 class="center">What This Means For You</h2>
-  <div class="panel center">
-    <p>
-      • More qualified demo bookings<br><br>
-      • Higher close rates from pre-sold prospects<br><br>
-      • Lower customer acquisition cost<br><br>
-      • Increased LTV through backend optimization<br><br>
-      • A system that compounds instead of breaking
-    </p>
-  </div>
-
-  <div class="panel center">
-    <h2>Performance Commitment</h2>
-    <p>
-      If demo bookings don’t increase within 60 days,
-      we continue optimizing at no additional cost
-      until the system performs.
-    </p>
-  </div>
-</section>
-
-<section id="philosophy">
+<section id="about" class="about">
   <h2 class="center">Our Philosophy</h2>
-  <div class="panel center">
-    <p>
-      SaaS growth is not about hacks.
-      It’s about leverage.
-      Attention is rented.
-      Infrastructure is owned.
-      We build systems that compound long after campaigns end.
-    </p>
-  </div>
+  <p class="center">
+    Attention is expensive. Systems are permanent.
+    We build assets that compound long after the work is done.
+  </p>
 </section>
 
-<section id="apply">
-  <h2 class="center">Apply For Revenue Infrastructure Install</h2>
+<section id="contact">
+  <h2 class="center">Initiate Conversation</h2>
 
   <div class="contact-box">
     <p>
-      We only work with SaaS founders already generating
-      at least $10k/month and serious about building
-      real revenue infrastructure.
-      If that’s you — this is where it starts.
+      If you’re building something serious,
+      this is where it starts.
     </p>
     <a href="mailto:suhail@necxmedia.com">
-      Apply via Email
+      suhail@necxmedia.com
     </a>
   </div>
 </section>
 
 <footer>
-  © 2026 NECXMEDIA. Revenue Infrastructure for SaaS.
+  © 2026 NECXMEDIA. Engineered for scale.
 </footer>
 
 <script>
@@ -316,8 +321,13 @@ gsap.utils.toArray(".card").forEach(card=>{
     ease:"power3.out"
   });
 });
+
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
 </script>
 
 </body>
 </html>
+
 
