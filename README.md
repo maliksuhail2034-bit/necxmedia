@@ -4,180 +4,181 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NECXMEDIA — SaaS Revenue Infrastructure</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
 <style>
 :root{
-  --bg:#050505;
-  --panel:#0e0e0e;
-  --soft:#141414;
+  --bg:#040404;
+  --panel:#0b0b0b;
   --white:#ffffff;
   --muted:#9ca3af;
   --accent:#5effa1;
+  --glow:rgba(94,255,161,.25);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-body{
+html,body{
   font-family:Inter,sans-serif;
-  background:var(--bg);
+  background:radial-gradient(circle at top,#0b0b0b 0%,#040404 60%);
   color:var(--white);
+  scroll-behavior:smooth;
 }
 
-section{padding:120px 8vw}
-h1,h2,h3{line-height:1.1}
-p{color:var(--muted);line-height:1.6}
+a{text-decoration:none;color:inherit}
+section{padding:140px 6vw}
+.center{text-align:center}
 
+/* NAV */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  background:rgba(5,5,5,.8);
-  backdrop-filter:blur(10px);
+  height:76px;
+  background:rgba(4,4,4,.7);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.04);
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:20px 8vw;
+  justify-content:space-between;
+  padding:0 6vw;
   z-index:999;
 }
 
 .logo{
   font-weight:900;
-  font-size:1.2rem;
+  letter-spacing:1px;
+  position:relative;
 }
+.logo::after{
+  content:"";
+  position:absolute;
+  bottom:-6px;
+  left:0;
+  width:30%;
+  height:2px;
+  background:var(--accent);
+  box-shadow:0 0 20px var(--glow);
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:32px;
+}
+nav ul a{
+  color:var(--muted);
+  font-weight:600;
+}
+nav ul a:hover{color:var(--white)}
 
 .nav-cta{
   background:var(--accent);
   color:#000;
-  padding:10px 22px;
+  padding:10px 26px;
   border-radius:999px;
   font-weight:800;
+  box-shadow:0 0 40px var(--glow);
 }
 
+/* HERO */
 .hero{
   min-height:100vh;
   display:flex;
   align-items:center;
   text-align:center;
-  background:radial-gradient(circle at top, #111 0%, #050505 60%);
 }
-
 .hero h1{
-  font-size:clamp(3rem,5vw,4.5rem);
+  font-size:clamp(3.2rem,5vw,5rem);
   font-weight:900;
-  margin-bottom:20px;
+  line-height:1.02;
+  margin-bottom:28px;
 }
-
-.hero span{
+.hero h1 span{
   color:var(--accent);
+  text-shadow:0 0 40px var(--glow);
 }
-
 .hero p{
-  max-width:800px;
-  margin:0 auto 40px;
-  font-size:1.1rem;
+  max-width:900px;
+  margin:0 auto 48px;
+  color:var(--muted);
+  font-size:1.2rem;
 }
-
 .cta{
   background:var(--accent);
   color:#000;
-  padding:18px 50px;
+  padding:18px 54px;
   border-radius:999px;
   font-weight:900;
   display:inline-block;
-  margin-top:20px;
+  box-shadow:0 0 60px var(--glow);
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:40px;
-  margin-top:80px;
-}
-
-.stat{
-  text-align:center;
-}
-
-.stat h2{
-  font-size:2.5rem;
-  color:var(--accent);
-}
-
-.system-grid{
+/* GRID */
+.grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:40px;
-  margin-top:60px;
+  gap:48px;
 }
-
 .card{
-  background:var(--soft);
-  padding:40px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.05);
-  transition:.3s ease;
+  background:linear-gradient(180deg,#0f0f0f,#0a0a0a);
+  padding:52px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.04);
+  transition:.45s ease;
+  position:relative;
 }
-
 .card:hover{
-  transform:translateY(-8px);
-  border-color:var(--accent);
+  transform:translateY(-14px);
+  box-shadow:0 50px 120px rgba(0,0,0,.7);
+}
+.card h3{margin-bottom:14px}
+
+/* PANEL */
+.panel{
+  background:var(--panel);
+  padding:90px;
+  border-radius:36px;
+  margin-top:100px;
+  border:1px solid rgba(255,255,255,.04);
+}
+.panel p{
+  color:var(--muted);
+  font-size:1.15rem;
+  max-width:920px;
+  line-height:1.65;
 }
 
-.highlight{
-  background:linear-gradient(180deg,#111,#090909);
-}
-
-.testimonial{
-  background:var(--soft);
-  padding:40px;
-  border-radius:20px;
-  margin-top:40px;
-  border:1px solid rgba(255,255,255,.05);
-}
-
-.apply-box{
-  background:linear-gradient(180deg,#0f0f0f,#070707);
-  padding:60px;
-  border-radius:30px;
-  max-width:600px;
-  margin:60px auto 0;
+.contact-box{
+  max-width:720px;
+  margin:70px auto 0;
+  background:linear-gradient(180deg,#0f0f0f,#090909);
+  padding:70px;
+  border-radius:36px;
+  border:1px solid rgba(255,255,255,.04);
   text-align:center;
-  border:1px solid rgba(255,255,255,.05);
 }
-
-input{
-  width:100%;
-  padding:14px;
-  margin-top:15px;
-  border-radius:8px;
-  border:none;
-  background:#1a1a1a;
-  color:#fff;
-}
-
-button{
-  margin-top:20px;
-  width:100%;
-  padding:15px;
-  background:var(--accent);
-  color:#000;
-  font-weight:800;
-  border:none;
-  border-radius:999px;
-  cursor:pointer;
+.contact-box a{
+  display:inline-block;
+  margin-top:28px;
+  font-weight:900;
+  color:var(--accent);
+  font-size:1.1rem;
 }
 
 footer{
-  text-align:center;
   padding:40px;
+  text-align:center;
   color:#666;
 }
 
 @media(max-width:768px){
-  section{padding:90px 6vw}
+  nav ul{display:none}
+  section{padding:110px 6vw}
+  .panel{padding:50px 28px}
+  .contact-box{padding:48px 28px}
 }
 </style>
 </head>
@@ -186,103 +187,135 @@ footer{
 
 <nav>
   <div class="logo">NECXMEDIA</div>
+  <ul>
+    <li><a href="#system">System</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#apply">Apply</a></li>
+  </ul>
   <a href="#apply" class="nav-cta">Apply</a>
 </nav>
 
 <section class="hero">
   <div style="width:100%">
     <h1>
-      Predictable SaaS Growth.<br>
-      <span>Installed In 30 Days.</span>
+      Predictable Demos.<br>
+      <span>Lower CAC. Higher LTV.</span>
     </h1>
     <p>
-      We build automated revenue infrastructure for SaaS founders doing $10k–$100k/month who want more qualified demos, lower CAC, and scalable growth.
+      We install automated revenue infrastructure for SaaS founders
+      doing $10k–$100k/month who want consistent demo bookings
+      without increasing ad spend or relying on manual outreach.
     </p>
     <a href="#apply" class="cta">Apply For Revenue Install</a>
-
-    <div class="stats">
-      <div class="stat">
-        <h2>+32%</h2>
-        <p>Avg Demo Increase</p>
-      </div>
-      <div class="stat">
-        <h2>-18%</h2>
-        <p>Lower CAC</p>
-      </div>
-      <div class="stat">
-        <h2>2-4x</h2>
-        <p>Email ROI</p>
-      </div>
-    </div>
   </div>
 </section>
 
-<section>
-  <h2 style="text-align:center;font-size:2.5rem;">The Revenue Infrastructure System™</h2>
+<section id="system">
+  <h2 class="center">The SaaS Revenue Infrastructure System™</h2>
 
-  <div class="system-grid">
+  <div class="grid" style="margin-top:90px">
+
     <div class="card">
-      <h3>Attraction Engine</h3>
-      <p>Authority positioning + intent-driven lead capture that pulls qualified prospects.</p>
+      <h3>Layer 1 — Attraction Engine</h3>
+      <p>Authority positioning that pulls in high-intent prospects instead of random traffic.</p>
     </div>
+
     <div class="card">
-      <h3>Conversion Architecture</h3>
-      <p>Funnels engineered to pre-sell, qualify, and increase demo intent.</p>
+      <h3>Layer 2 — Conversion Architecture</h3>
+      <p>Strategic landing pages engineered to pre-sell, qualify, and drive demo intent.</p>
     </div>
+
     <div class="card">
-      <h3>Automated Pre-Sell</h3>
-      <p>Email sequences that build belief and increase show-up & close rates.</p>
+      <h3>Layer 3 — Automated Pre-Sell</h3>
+      <p>Email systems that educate, eliminate objections, and increase demo show-up rates.</p>
     </div>
+
   </div>
-</section>
 
-<section class="highlight">
-  <h2 style="text-align:center;font-size:2.3rem;">Why Most SaaS Funnels Fail</h2>
-  <p style="text-align:center;max-width:800px;margin:30px auto;">
-    Cold traffic sent directly to a demo page rarely converts efficiently.
-    We build structured education paths that warm prospects before they ever speak to your sales team.
-  </p>
-</section>
-
-<section>
-  <h2 style="text-align:center;font-size:2.3rem;">Founder Feedback</h2>
-
-  <div class="testimonial">
+  <div class="panel">
+    <h2>Why This Works</h2>
     <p>
-      “We were relying on ads and inconsistent demos. After installing the system,
-      demo quality improved dramatically and our sales team closed faster.”
+      Most SaaS founders send cold traffic directly to a demo page
+      and hope it converts.
+      We build structured conversion paths that educate prospects
+      before they ever speak to you — increasing close rates,
+      lowering CAC, and filtering out low-quality demos.
     </p>
-    <br>
-    <strong>— B2B SaaS Founder</strong>
+  </div>
+</section>
+
+<section id="results">
+  <h2 class="center">What This Means For You</h2>
+  <div class="panel center">
+    <p>
+      • More qualified demo bookings<br><br>
+      • Higher close rates from pre-sold prospects<br><br>
+      • Lower customer acquisition cost<br><br>
+      • Increased LTV through backend optimization<br><br>
+      • A system that compounds instead of breaking
+    </p>
+  </div>
+
+  <div class="panel center">
+    <h2>Performance Commitment</h2>
+    <p>
+      If demo bookings don’t increase within 60 days,
+      we continue optimizing at no additional cost
+      until the system performs.
+    </p>
+  </div>
+</section>
+
+<section id="philosophy">
+  <h2 class="center">Our Philosophy</h2>
+  <div class="panel center">
+    <p>
+      SaaS growth is not about hacks.
+      It’s about leverage.
+      Attention is rented.
+      Infrastructure is owned.
+      We build systems that compound long after campaigns end.
+    </p>
   </div>
 </section>
 
 <section id="apply">
-  <h2 style="text-align:center;font-size:2.5rem;">Apply For Revenue Install</h2>
+  <h2 class="center">Apply For Revenue Infrastructure Install</h2>
 
-  <div class="apply-box">
+  <div class="contact-box">
     <p>
-      We only work with SaaS founders already generating $10k+/month.
-      Limited onboarding slots per month.
+      We only work with SaaS founders already generating
+      at least $10k/month and serious about building
+      real revenue infrastructure.
+      If that’s you — this is where it starts.
     </p>
-
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Business Email" required>
-      <input type="text" placeholder="Current Monthly Revenue" required>
-      <button type="submit">Submit Application</button>
-    </form>
+    <a href="mailto:suhail@necxmedia.com">
+      Apply via Email
+    </a>
   </div>
 </section>
 
 <footer>
-© 2026 NECXMEDIA — Revenue Infrastructure for SaaS Founders
+  © 2026 NECXMEDIA. Revenue Infrastructure for SaaS.
 </footer>
 
 <script>
-gsap.from(".hero h1",{y:80,opacity:0,duration:1});
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from(".hero h1",{y:90,opacity:0,duration:1.2,ease:"power4.out"});
 gsap.from(".hero p",{y:40,opacity:0,delay:.3});
 gsap.from(".cta",{scale:.9,opacity:0,delay:.6});
+
+gsap.utils.toArray(".card").forEach(card=>{
+  gsap.from(card,{
+    scrollTrigger:{trigger:card,start:"top 85%"},
+    y:70,
+    opacity:0,
+    duration:.9,
+    ease:"power3.out"
+  });
+});
 </script>
 
 </body>
