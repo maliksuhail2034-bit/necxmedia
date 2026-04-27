@@ -112,24 +112,25 @@ nav{
 }
 .section-sub{color:rgba(250,248,244,0.45);font-size:0.97rem;max-width:500px;margin:0 auto 52px;line-height:1.65}
 
-/* YouTube thumbnail click-to-open approach */
-.yt-thumb{
+/* YouTube embed player */
+.yt-wrap{
   position:relative;width:100%;max-width:320px;
   margin:0 auto;border-radius:20px;overflow:hidden;
-  aspect-ratio:9/16;cursor:pointer;
+  aspect-ratio:9/16;
   box-shadow:0 40px 120px rgba(0,0,0,0.7);
-  background:#111;
+  background:#000;
 }
-.yt-thumb img{
-  width:100%;height:100%;object-fit:cover;
-  display:block;transition:transform 0.4s;
+.yt-wrap iframe{
+  position:absolute;inset:0;
+  width:100%;height:100%;border:none;
 }
-.yt-thumb:hover img{transform:scale(1.04)}
-.yt-thumb-overlay{
+.yt-overlay.gone{opacity:0;pointer-events:none}
+.yt-overlay{
   position:absolute;inset:0;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   background:linear-gradient(160deg,rgba(0,0,0,0.22) 0%,rgba(0,0,0,0.55) 100%);
+  cursor:pointer;transition:opacity 0.3s;
 }
 .play-ring{
   width:76px;height:76px;
@@ -138,14 +139,9 @@ nav{
   box-shadow:0 8px 48px rgba(232,83,26,0.55);
   transition:transform 0.2s,background 0.2s;
 }
-.yt-thumb:hover .play-ring{transform:scale(1.1);background:var(--orange2)}
+.yt-overlay:hover .play-ring{transform:scale(1.1);background:var(--orange2)}
 .play-ring svg{width:28px;height:28px;fill:white;margin-left:4px}
 .play-label{margin-top:16px;color:rgba(255,255,255,0.72);font-size:0.8rem;font-weight:500;letter-spacing:0.04em}
-.yt-thumb-note{
-  margin-top:20px;font-size:0.78rem;
-  color:rgba(250,248,244,0.3);
-}
-.yt-thumb-note a{color:var(--orange2);text-decoration:underline;text-underline-offset:3px}
 
 /* PROBLEM */
 .problem-section{padding:110px 5vw;background:var(--bg)}
@@ -214,6 +210,101 @@ nav{
 .svc-tag{display:inline-block;margin-top:18px;font-size:0.74rem;font-weight:600;color:var(--orange);background:var(--orangebg);padding:3px 12px;border-radius:100px;letter-spacing:0.04em}
 
 /* PROOF */
+
+/* FUNNEL SECTION */
+.funnel-section{padding:110px 5vw;background:var(--dark)}
+.funnel-inner{max-width:1080px;margin:0 auto}
+.funnel-section .section-tag{color:var(--orange2)}
+.funnel-section h2{
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.9rem,3vw,2.7rem);
+  font-weight:700;color:var(--white);margin-bottom:10px;margin-top:16px;
+}
+.funnel-intro{color:rgba(250,248,244,0.48);font-size:1rem;max-width:560px;margin-bottom:70px;line-height:1.7}
+
+/* Funnel visual */
+.funnel-visual{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  max-width:680px;margin:0 auto 80px;
+}
+.funnel-stage{
+  width:100%;display:flex;align-items:stretch;
+  position:relative;
+}
+.funnel-stage-inner{
+  flex:1;
+  padding:22px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  position:relative;z-index:1;
+  transition:opacity 0.2s;
+  border-radius:12px;
+  margin-bottom:4px;
+}
+.funnel-stage:nth-child(1) .funnel-stage-inner{background:rgba(232,83,26,0.9);margin:0 0px}
+.funnel-stage:nth-child(2) .funnel-stage-inner{background:rgba(232,83,26,0.72);margin:0 36px}
+.funnel-stage:nth-child(3) .funnel-stage-inner{background:rgba(232,83,26,0.54);margin:0 72px}
+.funnel-stage:nth-child(4) .funnel-stage-inner{background:rgba(232,83,26,0.38);margin:0 108px}
+.funnel-stage:nth-child(5) .funnel-stage-inner{background:rgba(232,83,26,0.22);margin:0 144px}
+
+.funnel-stage-left{display:flex;align-items:center;gap:16px}
+.funnel-stage-icon{
+  width:38px;height:38px;border-radius:10px;
+  background:rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.funnel-stage-icon svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.funnel-stage-name{font-weight:600;font-size:0.95rem;color:#fff}
+.funnel-stage-desc{font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:2px}
+.funnel-stage-count{
+  font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;
+  color:rgba(255,255,255,0.5);white-space:nowrap;
+}
+
+/* Funnel outcome row */
+.funnel-outcome{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  margin-top:28px;
+}
+.funnel-outcome-line{flex:1;height:1px;background:rgba(255,255,255,0.1)}
+.funnel-outcome-pill{
+  background:var(--orange);color:#fff;
+  padding:10px 24px;border-radius:100px;
+  font-size:0.82rem;font-weight:600;letter-spacing:0.04em;
+  white-space:nowrap;
+}
+
+/* Funnel explainer cards below */
+.funnel-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-top:64px;
+}
+.funnel-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:18px;padding:36px 28px;
+  transition:background 0.25s;
+}
+.funnel-card:hover{background:rgba(255,255,255,0.07)}
+.funnel-card-num{
+  font-family:'Fraunces',serif;font-size:2rem;
+  font-weight:300;color:var(--orange);opacity:0.4;
+  line-height:1;margin-bottom:16px;
+}
+.funnel-card h3{font-size:0.98rem;font-weight:600;color:var(--white);margin-bottom:8px}
+.funnel-card p{font-size:0.85rem;color:rgba(250,248,244,0.45);line-height:1.65}
+
+@media(max-width:860px){
+  .funnel-cards{grid-template-columns:1fr}
+  .funnel-stage-count{display:none}
+  .funnel-stage:nth-child(1) .funnel-stage-inner{margin:0 0px}
+  .funnel-stage:nth-child(2) .funnel-stage-inner{margin:0 16px}
+  .funnel-stage:nth-child(3) .funnel-stage-inner{margin:0 32px}
+  .funnel-stage:nth-child(4) .funnel-stage-inner{margin:0 48px}
+  .funnel-stage:nth-child(5) .funnel-stage-inner{margin:0 64px}
+  .funnel-stage-inner{padding:16px 18px}
+  .funnel-stage-desc{display:none}
+}
+
 .proof-bar{background:var(--orange);padding:60px 5vw}
 .proof-bar-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
 .proof-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:800;color:var(--white);line-height:1;margin-bottom:8px}
@@ -312,10 +403,11 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
   <ul class="nav-links">
     <li><a href="#problem">The Problem</a></li>
     <li><a href="#howitworks">How It Works</a></li>
+    <li><a href="#funnel">The Funnel</a></li>
     <li><a href="#system">The System</a></li>
     <li><a href="#contact">Work With Us</a></li>
   </ul>
-  <a href="#contact" class="nav-btn">Get Started</a>
+  <a href="mailto:suhail@necxmedia.com" class="nav-btn">Get Started</a>
 </nav>
 
 
@@ -347,27 +439,21 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
     <h2 class="reveal">See the whole idea<br>in under two minutes</h2>
     <p class="section-sub reveal">This short clip explains exactly how the system works. Watch it and you will know whether this is what you have been looking for.</p>
 
-    <!--
-      VIDEO NOTE:
-      The YouTube Short has embedding disabled. Clicking the thumbnail
-      opens the video directly on YouTube instead.
-      To enable embedding: YouTube Studio > select the video > Edit > More options > Allow embedding ON
-      Once enabled, replace the thumbnail+link below with a proper iframe embed.
-    -->
-    <div class="yt-thumb reveal" onclick="window.open('https://youtube.com/shorts/UZKhfRnFTew','_blank')">
-      <img
-        src="https://i.ytimg.com/vi/UZKhfRnFTew/hqdefault.jpg"
-        alt="NECXMEDIA overview video"
-        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'320\' height=\'568\' viewBox=\'0 0 320 568\'%3E%3Crect width=\'320\' height=\'568\' fill=\'%23111\'/%3E%3C/svg%3E'"
-      >
-      <div class="yt-thumb-overlay">
+    <div class="yt-wrap reveal">
+      <iframe
+        id="ytIframe"
+        src="https://www.youtube-nocookie.com/embed/UZKhfRnFTew?rel=0&modestbranding=1&playsinline=1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        title="NECXMEDIA Lead Education System">
+      </iframe>
+      <div class="yt-overlay" id="ytOverlay">
         <div class="play-ring">
           <svg viewBox="0 0 24 24"><path d="M8 5.14v14l11-7-11-7z"/></svg>
         </div>
-        <p class="play-label">Watch on YouTube</p>
+        <p class="play-label">Watch the overview</p>
       </div>
     </div>
-    <p class="yt-thumb-note">Opens in YouTube &nbsp;·&nbsp; <a href="https://youtube.com/shorts/UZKhfRnFTew" target="_blank" rel="noopener">direct link</a></p>
   </div>
 </section>
 
@@ -483,6 +569,121 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
 </section>
 
 
+
+<!-- SALES FUNNEL -->
+<section class="funnel-section" id="funnel">
+  <div class="funnel-inner">
+    <div class="section-tag reveal">The Sales Funnel</div>
+    <h2 class="reveal">A funnel is not a page.<br>It is a sequence of beliefs.</h2>
+    <p class="funnel-intro reveal">Most businesses have a website. We build a system where every single step moves a stranger one belief closer to becoming a paying client. Here is what that looks like.</p>
+
+    <!-- Visual funnel diagram -->
+    <div class="funnel-visual reveal">
+
+      <div class="funnel-stage">
+        <div class="funnel-stage-inner">
+          <div class="funnel-stage-left">
+            <div class="funnel-stage-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            </div>
+            <div>
+              <div class="funnel-stage-name">Awareness</div>
+              <div class="funnel-stage-desc">They discover you through content, ads, or referral</div>
+            </div>
+          </div>
+          <div class="funnel-stage-count">100</div>
+        </div>
+      </div>
+
+      <div class="funnel-stage">
+        <div class="funnel-stage-inner">
+          <div class="funnel-stage-left">
+            <div class="funnel-stage-icon">
+              <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div>
+              <div class="funnel-stage-name">Interest</div>
+              <div class="funnel-stage-desc">They enter your funnel and start consuming your content</div>
+            </div>
+          </div>
+          <div class="funnel-stage-count">68</div>
+        </div>
+      </div>
+
+      <div class="funnel-stage">
+        <div class="funnel-stage-inner">
+          <div class="funnel-stage-left">
+            <div class="funnel-stage-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <div class="funnel-stage-name">Education</div>
+              <div class="funnel-stage-desc">Emails and videos answer their questions and remove doubt</div>
+            </div>
+          </div>
+          <div class="funnel-stage-count">41</div>
+        </div>
+      </div>
+
+      <div class="funnel-stage">
+        <div class="funnel-stage-inner">
+          <div class="funnel-stage-left">
+            <div class="funnel-stage-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+              <div class="funnel-stage-name">Conviction</div>
+              <div class="funnel-stage-desc">They believe in your approach and self-qualify as a right fit</div>
+            </div>
+          </div>
+          <div class="funnel-stage-count">19</div>
+        </div>
+      </div>
+
+      <div class="funnel-stage">
+        <div class="funnel-stage-inner">
+          <div class="funnel-stage-left">
+            <div class="funnel-stage-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="funnel-stage-name">Conversion</div>
+              <div class="funnel-stage-desc">They book a call already sold. You just confirm and close.</div>
+            </div>
+          </div>
+          <div class="funnel-stage-count">12</div>
+        </div>
+      </div>
+
+      <div class="funnel-outcome">
+        <div class="funnel-outcome-line"></div>
+        <div class="funnel-outcome-pill">12 ready-to-buy calls from every 100 strangers</div>
+        <div class="funnel-outcome-line"></div>
+      </div>
+    </div>
+
+    <!-- Three funnel principles -->
+    <div class="funnel-cards">
+      <div class="funnel-card reveal">
+        <div class="funnel-card-num">01</div>
+        <h3>Every page has one job</h3>
+        <p>We never put two goals on the same page. Each step in the funnel does exactly one thing: move the lead to the next step. No distractions, no confusion, no leaks.</p>
+      </div>
+      <div class="funnel-card reveal">
+        <div class="funnel-card-num">02</div>
+        <h3>The funnel educates, not just sells</h3>
+        <p>Most funnels push people toward a yes. Ours pull people toward understanding. When someone truly understands your offer, the yes happens on its own. That is what makes it stick.</p>
+      </div>
+      <div class="funnel-card reveal">
+        <div class="funnel-card-num">03</div>
+        <h3>Wrong-fit leads exit themselves</h3>
+        <p>A well-built funnel does not just convert the right people. It politely removes the wrong ones before they ever waste your time. You only speak to people who have already decided.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- PROOF -->
 <div class="proof-bar">
   <div class="proof-bar-inner">
@@ -511,50 +712,9 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
   <div class="contact-inner">
     <div class="section-tag">Work With Us</div>
     <h2>Let your system do<br>the explaining.</h2>
-    <p>Drop your name and email below. We will reach out and walk you through exactly what this looks like for your business.</p>
+    <p>If you are ready to stop explaining your offer on every call and want a system that does it for you, reach out directly.</p>
 
-    <!--
-    ═══════════════════════════════════════════════════════
-    HOW TO ACTIVATE THIS FORM (takes 3 minutes, it is free):
-
-    1. Go to https://formspree.io and sign up with your email
-    2. Click "New Form", give it a name like "NECXMEDIA leads"
-    3. Copy the form endpoint — it looks like:
-       https://formspree.io/f/xabc1234
-    4. Replace YOUR_FORMSPREE_ID below with that code (just the ID part, e.g. xabc1234)
-    5. Save the file and push to GitHub — done.
-       Every submission lands in your Formspree dashboard AND gets
-       forwarded to whatever email you signed up with.
-    ═══════════════════════════════════════════════════════
-    -->
-
-    <div class="setup-notice" id="setupNotice">
-      <strong>Setup needed:</strong> Replace <code>YOUR_FORMSPREE_ID</code> in the HTML with your Formspree form ID to activate this form. See the comment above it for instructions. Takes about 3 minutes and is completely free.
-    </div>
-
-    <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-      <div class="form-name-row">
-        <input type="text" name="name" placeholder="Your name" required>
-      </div>
-      <div class="form-row">
-        <input type="email" name="email" placeholder="Your email address" required>
-      </div>
-      <!-- hidden field so you know where they came from -->
-      <input type="hidden" name="_subject" value="New lead from NECXMEDIA landing page">
-      <input type="hidden" name="_next" value="">
-      <button type="submit" class="form-submit" id="submitBtn">Send it</button>
-    </form>
-
-    <div class="form-msg success" id="formSuccess">
-      Got it. We will be in touch shortly.
-    </div>
-    <div class="form-msg error" id="formError">
-      Something went wrong. Please email us directly instead.
-    </div>
-
-    <p class="contact-alt">
-      Or write directly to <a href="mailto:suhail@necxmedia.com">suhail@necxmedia.com</a>
-    </p>
+    <a href="mailto:suhail@necxmedia.com" class="contact-email-link">suhail@necxmedia.com</a>
   </div>
 </section>
 
@@ -566,6 +726,19 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
 
 
 <script>
+/* VIDEO PLAY BUTTON */
+const overlay = document.getElementById('ytOverlay');
+const iframe  = document.getElementById('ytIframe');
+if (overlay && iframe) {
+  overlay.addEventListener('click', function() {
+    var src = iframe.src;
+    if (src.indexOf('autoplay=1') === -1) {
+      iframe.src = src + '&autoplay=1';
+    }
+    overlay.classList.add('gone');
+  });
+}
+
 /* SCROLL REVEAL */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -574,50 +747,7 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* FORMSPREE AJAX SUBMIT */
-const form      = document.getElementById('contact-form');
-const submitBtn = document.getElementById('submitBtn');
-const msgOk     = document.getElementById('formSuccess');
-const msgErr    = document.getElementById('formError');
-const notice    = document.getElementById('setupNotice');
 
-/* Hide the setup notice once the ID has been replaced */
-if (!form.action.includes('YOUR_FORMSPREE_ID')) {
-  notice.style.display = 'none';
-}
-
-form.addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  if (form.action.includes('YOUR_FORMSPREE_ID')) {
-    msgErr.textContent = 'Form not yet configured. Please email suhail@necxmedia.com directly.';
-    msgErr.style.display = 'block';
-    return;
-  }
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
-
-  try {
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (res.ok) {
-      form.style.display = 'none';
-      notice.style.display = 'none';
-      msgOk.style.display = 'block';
-    } else {
-      throw new Error('not ok');
-    }
-  } catch(err) {
-    msgErr.style.display = 'block';
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Send it';
-  }
-});
 </script>
 
 </body>
