@@ -715,6 +715,8 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
     <p>If you are ready to stop explaining your offer on every call and want a system that does it for you, reach out directly.</p>
 
     <a href="mailto:suhail@necxmedia.com" class="contact-email-link">suhail@necxmedia.com</a>
+    <br><br>
+    <a href="mailto:suhail@necxmedia.com" class="btn-primary" style="display:inline-block;margin-top:8px;background:var(--orange)">Get Started</a>
   </div>
 </section>
 
