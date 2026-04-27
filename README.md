@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -716,7 +717,7 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
 
     <a href="mailto:suhail@necxmedia.com" class="contact-email-link">suhail@necxmedia.com</a>
     <br><br>
-    <a href="mailto:suhail@necxmedia.com" class="btn-primary" style="display:inline-block;margin-top:8px;background:var(--orange)">Get Started</a>
+    <a href="mailto:suhail@necxmedia.com" class="btn-primary" style="display:inline-block;margin-top:8px;background:var(--orange)">suhail@necxmedia.com</a>
   </div>
 </section>
 
