@@ -19,6 +19,7 @@
   --orangedk:#c44010;
   --orangebg:#fdf0ea;
   --white:#ffffff;
+  --card:#ffffff;
   --border:rgba(17,17,8,0.09);
 }
 html{scroll-behavior:smooth}
@@ -154,7 +155,7 @@ nav{
   gap:1px;background:var(--border);
   border:1px solid var(--border);border-radius:20px;overflow:hidden;
 }
-.prob-card{background:var(--white);padding:44px 36px;transition:background 0.25s}
+.prob-card{background:var(--card);padding:44px 36px;transition:background 0.25s}
 .prob-card:hover{background:var(--orangebg)}
 .prob-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:300;color:var(--orange);opacity:0.28;line-height:1;margin-bottom:20px}
 .prob-card h3{font-size:1rem;font-weight:600;color:var(--dark);margin-bottom:10px}
@@ -168,7 +169,7 @@ nav{
 .how-intro{color:var(--mid);font-size:1rem;max-width:540px;margin-bottom:64px;line-height:1.7}
 .how-steps{display:flex;flex-direction:column;gap:3px}
 .step{
-  background:var(--white);border:1px solid var(--border);border-radius:16px;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
   padding:40px 44px;display:grid;grid-template-columns:52px 1fr;
   gap:32px;align-items:start;transition:box-shadow 0.25s;
 }
@@ -190,7 +191,7 @@ nav{
 .system-intro{color:var(--mid);font-size:1rem;max-width:520px;margin-bottom:60px;line-height:1.7}
 .system-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .svc{
-  background:var(--white);border:1px solid var(--border);border-radius:20px;
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
   padding:44px;transition:transform 0.25s,box-shadow 0.25s;
 }
 .svc:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(17,17,8,0.09)}
@@ -332,10 +333,45 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
   .system-grid{grid-template-columns:1fr}
   .proof-bar-inner{grid-template-columns:repeat(2,1fr)}
   .step{grid-template-columns:1fr;gap:16px}
+  section{padding:80px 6vw}
+  .hero{padding:110px 6vw 60px}
+  .problem-section,.how-section,.system-section,.funnel-section,.contact-section{padding:80px 6vw}
+  .proof-bar{padding:48px 6vw}
+}
+@media(max-width:640px){
+  .hero{padding:100px 5vw 50px}
+  .hero-sub{margin-bottom:32px}
+  .yt-wrap{min-height:0}
+  .hero-video-wrap{margin-bottom:24px}
+  .hero-trust{margin-top:36px;gap:12px;font-size:0.72rem}
+  .hero-trust-div{display:none}
+  section{padding:64px 5vw}
+  .problem-section,.how-section,.system-section,.funnel-section,.contact-section{padding:64px 5vw}
+  .proof-bar{padding:40px 5vw}
+  .proof-bar-inner{gap:24px}
+  .step{padding:28px 24px}
+  .svc{padding:32px 26px}
+  .prob-card{padding:32px 26px}
+  .funnel-cards{gap:14px}
+  .funnel-card{padding:28px 22px}
+  nav{padding:16px 5vw}
 }
 @media(max-width:540px){
-  .hero h1{font-size:2.5rem}
+  .hero h1{font-size:2.3rem}
   .proof-bar-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:420px){
+  .hero-eyebrow{font-size:0.68rem;padding:5px 12px}
+  .hero h1{font-size:2rem}
+  .hero-sub{font-size:0.95rem}
+  .btn-primary,.btn-ghost{padding:13px 24px;font-size:0.86rem;width:100%;text-align:center}
+  .hero-actions{width:100%}
+  .funnel-outcome-pill{font-size:0.74rem;padding:8px 16px}
+  .funnel-outcome{flex-direction:column;gap:10px}
+  .funnel-outcome-line{display:none}
+  .proof-bar-inner{grid-template-columns:1fr;gap:28px}
+  .contact-section h2{font-size:1.9rem}
+  footer{flex-direction:column;gap:10px;text-align:center}
 }
 </style>
 </head>
