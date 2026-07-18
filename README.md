@@ -363,7 +363,7 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
 @media(max-width:640px){
 .hero{padding:100px 5vw 50px}
 .hero-sub{margin-bottom:32px}
-.hero-video-wrap{margin-bottom:24px;width:100vw;position:relative;left:50%;transform:translateX(-50%)}
+.hero-video-wrap{margin-bottom:24px;align-self:flex-start;width:calc(100% + 10vw);margin-left:-5vw}
 .yt-wrap{max-width:none;border-radius:0;box-shadow:0 12px 40px rgba(17,17,8,0.18)}
 .hero-trust{margin-top:36px;gap:12px;font-size:0.72rem}
 .hero-trust-div{display:none}
@@ -423,7 +423,7 @@ footer{flex-direction:column;gap:10px;text-align:center;justify-content:center}
 
 <!-- HERO -->
 <section class="hero" id="home">
-<div class="hero-eyebrow"><span></span>Lead Education System</div>
+<div class="hero-eyebrow"><span></span>The Client Hunting System</div>
 <h1>Leads that understand you<br>before they <i>ever call you.</i></h1>
 <p class="hero-sub">
 We build the sales funnels, content systems, Meta ads, and email sequences that educate, filter, and qualify your leads for you. By the time someone reaches out, they already know what you do, they already trust you, and they are already sold.
@@ -436,7 +436,7 @@ id="ytIframe"
 src="https://www.youtube.com/embed/Df_MkNlI9CM?rel=0&modestbranding=1&playsinline=1"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 allowfullscreen
-title="NECXMEDIA Lead Education System">
+title="NECXMEDIA - The Client Hunting System">
 </iframe>
 <div class="yt-overlay" id="ytOverlay">
 <div class="play-ring">
