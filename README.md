@@ -74,9 +74,13 @@ nav{
   max-width:580px;margin:0 auto 50px;line-height:1.74;
   animation:rise 0.8s 0.18s ease both;
 }
+.hero-video-wrap{
+  animation:rise 0.8s 0.24s ease both;
+  margin-bottom:32px;
+}
 .hero-actions{
   display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
-  animation:rise 0.8s 0.26s ease both;
+  animation:rise 0.8s 0.3s ease both;
 }
 .btn-primary{
   background:var(--dark);color:var(--white);
@@ -100,24 +104,14 @@ nav{
 }
 .hero-trust-div{width:1px;height:12px;background:var(--light);flex-shrink:0}
 
-/* VIDEO SECTION */
-.video-section{background:var(--dark);padding:100px 5vw}
-.video-inner{max-width:860px;margin:0 auto;text-align:center}
-.section-tag{font-size:0.74rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px}
-.video-section .section-tag{color:var(--orange2)}
-.video-section h2{
-  font-family:'Fraunces',serif;
-  font-size:clamp(1.8rem,3.5vw,2.8rem);
-  font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.12;
-}
-.section-sub{color:rgba(250,248,244,0.45);font-size:0.97rem;max-width:500px;margin:0 auto 52px;line-height:1.65}
-
-/* YouTube embed player */
+/* YouTube embed player — now sits in hero, 16:9 */
 .yt-wrap{
-  position:relative;width:100%;max-width:320px;
+  position:relative;width:100%;max-width:680px;
+  min-height:300px;
   margin:0 auto;border-radius:20px;overflow:hidden;
-  aspect-ratio:9/16;
-  box-shadow:0 40px 120px rgba(0,0,0,0.7);
+  aspect-ratio:16/9;
+  box-shadow:0 30px 90px rgba(17,17,8,0.22);
+  border:1px solid rgba(17,17,8,0.08);
   background:#000;
 }
 .yt-wrap iframe{
@@ -147,6 +141,7 @@ nav{
 .problem-section{padding:110px 5vw;background:var(--bg)}
 .problem-inner{max-width:1080px;margin:0 auto}
 .problem-section .section-tag{color:var(--orange)}
+.section-tag{font-size:0.74rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px}
 .problem-section h2{
   font-family:'Fraunces',serif;
   font-size:clamp(1.9rem,3.5vw,3rem);
@@ -209,8 +204,6 @@ nav{
 .svc p{font-size:0.88rem;color:var(--mid);line-height:1.68}
 .svc-tag{display:inline-block;margin-top:18px;font-size:0.74rem;font-weight:600;color:var(--orange);background:var(--orangebg);padding:3px 12px;border-radius:100px;letter-spacing:0.04em}
 
-/* PROOF */
-
 /* FUNNEL SECTION */
 .funnel-section{padding:110px 5vw;background:var(--dark)}
 .funnel-inner{max-width:1080px;margin:0 auto}
@@ -222,7 +215,6 @@ nav{
 }
 .funnel-intro{color:rgba(250,248,244,0.48);font-size:1rem;max-width:560px;margin-bottom:70px;line-height:1.7}
 
-/* Funnel visual */
 .funnel-visual{
   display:flex;flex-direction:column;align-items:center;gap:0;
   max-width:680px;margin:0 auto 80px;
@@ -260,7 +252,6 @@ nav{
   color:rgba(255,255,255,0.5);white-space:nowrap;
 }
 
-/* Funnel outcome row */
 .funnel-outcome{
   display:flex;align-items:center;justify-content:center;gap:12px;
   margin-top:28px;
@@ -273,7 +264,6 @@ nav{
   white-space:nowrap;
 }
 
-/* Funnel explainer cards below */
 .funnel-cards{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:16px;margin-top:64px;
@@ -310,7 +300,7 @@ nav{
 .proof-num{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:800;color:var(--white);line-height:1;margin-bottom:8px}
 .proof-label{font-size:0.82rem;color:rgba(255,255,255,0.7);font-weight:500}
 
-/* ── CONTACT ── */
+/* CONTACT */
 .contact-section{background:var(--dark);padding:110px 5vw}
 .contact-inner{max-width:640px;margin:0 auto;text-align:center}
 .contact-section .section-tag{color:var(--orange2);margin-bottom:20px}
@@ -322,53 +312,6 @@ nav{
 .contact-section > .contact-inner > p{
   color:rgba(250,248,244,0.45);font-size:0.98rem;line-height:1.72;margin-bottom:48px;
 }
-
-/* Formspree form */
-#contact-form{display:flex;flex-direction:column;gap:12px;max-width:460px;margin:0 auto 20px}
-.form-row{display:flex;gap:0;border:1px solid rgba(255,255,255,0.1);border-radius:100px;overflow:hidden;background:rgba(255,255,255,0.05)}
-.form-row input{
-  flex:1;background:transparent;border:none;outline:none;
-  padding:15px 22px;color:var(--white);
-  font-family:'Instrument Sans',sans-serif;font-size:0.88rem;
-}
-.form-row input::placeholder{color:rgba(255,255,255,0.28)}
-.form-name-row{
-  border:1px solid rgba(255,255,255,0.1);border-radius:100px;overflow:hidden;
-  background:rgba(255,255,255,0.05);
-}
-.form-name-row input{
-  width:100%;background:transparent;border:none;outline:none;
-  padding:15px 22px;color:var(--white);
-  font-family:'Instrument Sans',sans-serif;font-size:0.88rem;
-}
-.form-name-row input::placeholder{color:rgba(255,255,255,0.28)}
-.form-submit{
-  background:var(--orange);color:var(--white);border:none;
-  padding:15px 22px;border-radius:100px;
-  font-family:'Instrument Sans',sans-serif;font-size:0.88rem;font-weight:600;
-  cursor:pointer;transition:background 0.2s;width:100%;
-}
-.form-submit:hover{background:var(--orange2)}
-.form-submit:disabled{background:#555;cursor:not-allowed}
-
-/* success / error states */
-.form-msg{
-  font-size:0.84rem;margin-top:8px;
-  padding:12px 20px;border-radius:12px;display:none;
-}
-.form-msg.success{display:block;background:rgba(34,197,94,0.12);color:#4ade80}
-.form-msg.error{display:block;background:rgba(232,83,26,0.12);color:var(--orange2)}
-
-.contact-alt{font-size:0.82rem;color:rgba(250,248,244,0.28);margin-top:16px}
-.contact-alt a{color:var(--orange2);font-weight:600}
-
-/* SETUP NOTICE — remove after adding your Formspree ID */
-.setup-notice{
-  background:rgba(232,83,26,0.1);border:1px solid rgba(232,83,26,0.3);
-  border-radius:12px;padding:16px 20px;margin-bottom:24px;
-  font-size:0.82rem;color:rgba(250,248,244,0.7);line-height:1.6;text-align:left;
-}
-.setup-notice strong{color:var(--orange2)}
 
 footer{
   background:#0c0c09;padding:28px 5vw;
@@ -416,33 +359,14 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
   <div class="hero-eyebrow"><span></span>Lead Education System</div>
   <h1>Leads that understand you<br>before they <i>ever call you.</i></h1>
   <p class="hero-sub">
-    We build the sales funnels, content systems, and email sequences that educate, filter, and qualify your leads for you. By the time someone reaches out, they already know what you do, they already trust you, and they are already sold.
+    We build the sales funnels, content systems, Meta ads, and email sequences that educate, filter, and qualify your leads for you. By the time someone reaches out, they already know what you do, they already trust you, and they are already sold.
   </p>
-  <div class="hero-actions">
-    <a href="#contact" class="btn-primary">Build my system</a>
-    <a href="#howitworks" class="btn-ghost">See how it works</a>
-  </div>
-  <div class="hero-trust">
-    <span>No more explaining your offer from scratch</span>
-    <div class="hero-trust-div"></div>
-    <span>Leads that filter themselves</span>
-    <div class="hero-trust-div"></div>
-    <span>Runs without you</span>
-  </div>
-</section>
 
-
-<!-- VIDEO -->
-<section class="video-section" id="demo">
-  <div class="video-inner">
-    <div class="section-tag reveal">Watch This First</div>
-    <h2 class="reveal">See the whole idea<br>in under two minutes</h2>
-    <p class="section-sub reveal">This short clip explains exactly how the system works. Watch it and you will know whether this is what you have been looking for.</p>
-
-    <div class="yt-wrap reveal">
+  <div class="hero-video-wrap">
+    <div class="yt-wrap">
       <iframe
         id="ytIframe"
-        src="https://www.youtube-nocookie.com/embed/UZKhfRnFTew?rel=0&modestbranding=1&playsinline=1"
+        src="https://www.youtube.com/embed/GMidy2Ks3P8?rel=0&modestbranding=1&playsinline=1"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
         title="NECXMEDIA Lead Education System">
@@ -454,6 +378,21 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
         <p class="play-label">Watch the overview</p>
       </div>
     </div>
+    <p style="text-align:center;margin-top:10px;font-size:0.78rem;color:var(--light)">
+      Video not loading? <a href="https://www.youtube.com/watch?v=GMidy2Ks3P8" target="_blank" style="color:var(--orange);font-weight:600">Watch it directly on YouTube</a>
+    </p>
+  </div>
+
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Check if you qualify</a>
+  </div>
+
+  <div class="hero-trust">
+    <span>No more explaining your offer from scratch</span>
+    <div class="hero-trust-div"></div>
+    <span>Leads that filter themselves</span>
+    <div class="hero-trust-div"></div>
+    <span>Runs without you</span>
   </div>
 </section>
 
@@ -564,10 +503,17 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
         <p>We take your core ideas and turn them into content for every channel your audience uses. Your funnel keeps getting new leads without you having to be active everywhere manually every single day.</p>
         <span class="svc-tag">Continuous Reach</span>
       </div>
+      <div class="svc reveal">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5"/></svg>
+        </div>
+        <h3>Meta Ads — Copy, Creative &amp; Management</h3>
+        <p>We write the ad copy, design the creative, and run your Meta account ourselves — daily, not on autopilot. Ads bring in people who are already halfway through the funnel's beliefs, not cold strangers starting from zero.</p>
+        <span class="svc-tag">Paid Acquisition</span>
+      </div>
     </div>
   </div>
 </section>
-
 
 
 <!-- SALES FUNNEL -->
@@ -577,7 +523,6 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
     <h2 class="reveal">A funnel is not a page.<br>It is a sequence of beliefs.</h2>
     <p class="funnel-intro reveal">Most businesses have a website. We build a system where every single step moves a stranger one belief closer to becoming a paying client. Here is what that looks like.</p>
 
-    <!-- Visual funnel diagram -->
     <div class="funnel-visual reveal">
 
       <div class="funnel-stage">
@@ -662,7 +607,6 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
       </div>
     </div>
 
-    <!-- Three funnel principles -->
     <div class="funnel-cards">
       <div class="funnel-card reveal">
         <div class="funnel-card-num">01</div>
@@ -748,7 +692,6 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
 
 </script>
 
