@@ -363,7 +363,7 @@ footer p{font-size:0.76rem;color:rgba(250,248,244,0.2)}
 @media(max-width:640px){
 .hero{padding:100px 5vw 50px}
 .hero-sub{margin-bottom:32px}
-.hero-video-wrap{margin-bottom:24px;width:calc(100% + 10vw);margin-left:-5vw}
+.hero-video-wrap{margin-bottom:24px;width:100vw;position:relative;left:50%;transform:translateX(-50%)}
 .yt-wrap{max-width:none;border-radius:0;box-shadow:0 12px 40px rgba(17,17,8,0.18)}
 .hero-trust{margin-top:36px;gap:12px;font-size:0.72rem}
 .hero-trust-div{display:none}
