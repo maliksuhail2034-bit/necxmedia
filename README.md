@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NECXMEDIA
 
-## Getting Started
+Premium high-ticket sales funnel for NECXMEDIA — Next.js 16 (App Router, TypeScript), deployed on Vercel at [necxmedia.com](https://necxmedia.com).
 
-First, run the development server:
+## Structure
+
+- `/` — homepage (hero + VSL, problem, mechanism, funnel, who we help, FAQ, final CTA)
+- `/apply` — short lead application form
+- `/book` — Calendly strategy-call booking
+- `/thank-you` — post-apply / post-booking confirmation
+- `/api/lead` — validates and records applications to Google Sheets, then sends a best-effort confirmation email via Resend
+
+All site copy lives in `lib/content.ts` — edit there rather than in components.
+
+## Local development
 
 ```bash
+npm install
+cp .env.example .env.local   # fill in real values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Required environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See `.env.example` for the full list and descriptions. The app runs and the marketing pages render with none of them set — `NEXT_PUBLIC_YOUTUBE_VIDEO_ID` falls back to the current VSL, and `/api/lead` will return a clear error (not a fake success) until `GOOGLE_SHEETS_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL`, and `GOOGLE_PRIVATE_KEY` are set.
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploys to Vercel from this repo. Set the environment variables above in the Vercel project settings (Production + Preview), then point the `necxmedia.com` domain at the Vercel project.

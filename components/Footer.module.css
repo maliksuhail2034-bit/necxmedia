@@ -1,0 +1,32 @@
+.footer {
+  background: #0c0c09;
+  padding: 28px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.logo {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: rgba(250, 248, 244, 0.3);
+}
+.footer p {
+  font-size: 0.76rem;
+  color: rgba(250, 248, 244, 0.2);
+}
+.footer a {
+  color: rgba(250, 248, 244, 0.35);
+}
+
+@media (max-width: 420px) {
+  .footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
