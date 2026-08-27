@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { appendLeadToAirtable, isAirtableConfigured } from '@/lib/airtable';
+import { appendLeadToSheetWebhook, isSheetsWebhookConfigured } from '@/lib/sheetsWebhook';
 import { sendLeadEmails } from '@/lib/email';
 
 const MAX_FIELD_LENGTH = 2000;
@@ -45,8 +45,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: 'Please enter a valid email address.' }, { status: 400 });
   }
 
-  if (!isAirtableConfigured()) {
-    console.error('Lead submitted but Airtable is not configured:', { name, email, companyWebsite });
+  if (!isSheetsWebhookConfigured()) {
+    console.error('Lead submitted but the Google Sheets webhook is not configured:', { name, email, companyWebsite });
     return NextResponse.json(
       {
         ok: false,
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
   const utm = (body.utm as Record<string, string>) || {};
 
   try {
-    await appendLeadToAirtable({
+    await appendLeadToSheetWebhook({
       timestamp: new Date().toISOString(),
       name,
       email,
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
       utmTerm: clean(utm.utm_term),
     });
   } catch (err) {
-    console.error('Failed to record lead in Airtable:', err);
+    console.error('Failed to record lead in Google Sheets:', err);
     return NextResponse.json(
       { ok: false, error: 'Something went wrong recording your application. Please email us directly.' },
       { status: 500 }
