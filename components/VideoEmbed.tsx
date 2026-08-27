@@ -16,7 +16,7 @@ export default function VideoEmbed({
 }) {
   const [playing, setPlaying] = useState(false);
 
-  const src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1${
+  const src = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1${
     playing ? '&autoplay=1' : ''
   }`;
 
