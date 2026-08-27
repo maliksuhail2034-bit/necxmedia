@@ -45,7 +45,7 @@ function loadYouTubeApi(): Promise<void> {
   if (window.YT?.Player) return Promise.resolve();
   if (apiPromise) return apiPromise;
 
-  apiPromise = new Promise((resolve) => {
+  apiPromise = new Promise((resolve, reject) => {
     const previous = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = () => {
       previous?.();
@@ -53,6 +53,7 @@ function loadYouTubeApi(): Promise<void> {
     };
     const script = document.createElement('script');
     script.src = 'https://www.youtube.com/iframe_api';
+    script.onerror = () => reject(new Error('Failed to load YouTube iframe API'));
     document.head.appendChild(script);
   });
 
@@ -84,6 +85,7 @@ export default function VideoEmbed({
 
   const [started, setStarted] = useState(false);
   const [ended, setEnded] = useState(false);
+  const [apiError, setApiError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -170,6 +172,8 @@ export default function VideoEmbed({
           },
         },
       });
+    }).catch(() => {
+      if (!cancelled) setApiError(true);
     });
 
     return () => {
@@ -313,12 +317,14 @@ export default function VideoEmbed({
           </button>
         )}
       </div>
-      <p className={styles.fallback}>
-        Video not loading?{' '}
-        <a href={`https://youtu.be/${videoId}`} target="_blank" rel="noreferrer">
-          Watch it directly on YouTube
-        </a>
-      </p>
+      {apiError && (
+        <p className={styles.fallback}>
+          Video not loading?{' '}
+          <a href={`https://youtu.be/${videoId}`} target="_blank" rel="noreferrer">
+            Watch it directly on YouTube
+          </a>
+        </p>
+      )}
     </div>
   );
 }

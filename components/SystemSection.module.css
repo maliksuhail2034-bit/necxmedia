@@ -23,15 +23,24 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
 }
 .card {
+  grid-column: span 2;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 44px;
+  padding: 40px 32px;
   transition: transform 0.25s, box-shadow 0.25s;
+}
+/* 5 cards on a 6-col grid lay out 3+2 — center the trailing pair instead of
+   leaving them left-aligned with an empty cell beside them. */
+.card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+.card:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 .card:hover {
   transform: translateY(-4px);
@@ -82,6 +91,11 @@
   }
   .grid {
     grid-template-columns: 1fr;
+  }
+  .card,
+  .card:nth-child(4),
+  .card:nth-child(5) {
+    grid-column: auto;
   }
 }
 @media (max-width: 640px) {

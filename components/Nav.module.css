@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 5vw;
-  background: rgba(250, 248, 244, 0.92);
+  background: rgba(250, 248, 244, 0.98);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border);
