@@ -1,7 +1,7 @@
 // Server-only. Sends the lead confirmation email via Resend's REST API directly
 // (no SDK dependency needed for a single transactional send). No-ops with a
 // console warning if EMAIL_PROVIDER_API_KEY isn't configured yet, so a missing
-// email integration never blocks the lead from being recorded in Sheets.
+// email integration never blocks the lead from being recorded in Airtable.
 
 import { site } from './content';
 

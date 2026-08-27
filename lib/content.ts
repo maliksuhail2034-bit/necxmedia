@@ -242,7 +242,7 @@ export const faq = {
     },
     {
       q: 'How long does it take to see results?',
-      a: 'TODO — CONTENT REQUIRED: confirm a realistic timeline based on your actual project delivery history before publishing a specific figure here.',
+      a: "It depends on your starting point — how much content and proof already exists, and how complex your offer is. We'll give you a realistic timeline for your specific business on the strategy call rather than a generic promise.",
     },
     {
       q: 'What happens on the strategy call itself?',
