@@ -9,6 +9,7 @@ import styles from './book.module.css';
 
 export default function BookFlow() {
   const [step, setStep] = useState<'form' | 'calendly'>('form');
+  const [lead, setLead] = useState<{ name?: string; email?: string }>({});
 
   useEffect(() => {
     if (window.location.hash === '#calendly') {
@@ -48,12 +49,19 @@ export default function BookFlow() {
               fields={bookFormFields}
               source="book"
               submitLabel={bookPage.submitLabel}
-              onSuccess={() => setStep('calendly')}
+              onSuccess={(values) => {
+                setLead({ name: values.name, email: values.email });
+                setStep('calendly');
+              }}
             />
           </div>
         ) : (
           <div id="calendly">
-            <CalendlyEmbed calendlyUrl={site.calendlyUrl} />
+            <CalendlyEmbed
+              calendlyUrl={site.calendlyUrl}
+              prefillName={lead.name}
+              prefillEmail={lead.email}
+            />
           </div>
         )}
       </section>

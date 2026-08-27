@@ -19,7 +19,7 @@ export default function LeadForm({
   fields?: Field[];
   source?: string;
   submitLabel?: string;
-  onSuccess?: () => void;
+  onSuccess?: (values: FormState) => void;
 }) {
   const router = useRouter();
   const [values, setValues] = useState<FormState>({});
@@ -62,7 +62,7 @@ export default function LeadForm({
 
       trackEvent('apply_submitted');
       if (onSuccess) {
-        onSuccess();
+        onSuccess(values);
       } else {
         router.push('/thank-you?type=applied');
       }
