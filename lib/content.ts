@@ -355,9 +355,10 @@ export const bookPage = {
   ],
   forWho: 'For founders with a proven offer who are ready to stop explaining it on every call.',
   formHeading: 'Tell us where to reach you.',
-  formIntro: "Share a few details and we'll set up a time that works. Prefer to skip the wait? Grab a slot on the calendar below instead.",
+  formIntro: "Share a few details and we'll set up a time that works.",
   submitLabel: 'Request a Strategy Call',
-  orDivider: 'Or pick a time yourself right now:',
+  calendlyHeading: 'Pick a time that works.',
+  calendlyIntro: "Thanks — now grab a slot on the calendar below and you're set.",
 };
 
 export const thankYouPage = {

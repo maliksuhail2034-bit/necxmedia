@@ -92,14 +92,6 @@
   text-align: center;
 }
 
-.orDivider {
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--light);
-  margin-bottom: 32px;
-}
-
 @media (max-width: 640px) {
   .formBlock {
     padding: 28px 20px;

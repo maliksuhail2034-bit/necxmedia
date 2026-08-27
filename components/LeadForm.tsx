@@ -14,10 +14,12 @@ export default function LeadForm({
   fields = applyFields,
   source = 'apply',
   submitLabel = applyPage.submitLabel,
+  onSuccess,
 }: {
   fields?: Field[];
   source?: string;
   submitLabel?: string;
+  onSuccess?: () => void;
 }) {
   const router = useRouter();
   const [values, setValues] = useState<FormState>({});
@@ -59,7 +61,11 @@ export default function LeadForm({
       }
 
       trackEvent('apply_submitted');
-      router.push('/thank-you?type=applied');
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        router.push('/thank-you?type=applied');
+      }
     } catch {
       setError('Something went wrong. Please try again or email us directly.');
       setSubmitting(false);
