@@ -20,6 +20,7 @@
   --card: #ffffff;
   --border: rgba(17, 17, 8, 0.09);
   --font-serif: var(--font-fraunces-raw), serif;
+  --font-serif-italic: var(--font-fraunces-italic-raw), serif;
   --font-sans: var(--font-instrument-sans-raw), sans-serif;
 }
 

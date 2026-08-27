@@ -43,6 +43,7 @@
   animation: rise 0.8s 0.08s ease both;
 }
 .heading em {
+  font-family: var(--font-serif-italic);
   color: var(--orange);
   font-style: italic;
   font-weight: 300;

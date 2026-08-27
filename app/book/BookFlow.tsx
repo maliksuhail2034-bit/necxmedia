@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Nav from '@/components/Nav';
 import CalendlyEmbed from '@/components/CalendlyEmbed';
 import LeadForm from '@/components/LeadForm';
+import Footer from '@/components/Footer';
 import { bookPage, bookFormFields, site } from '@/lib/content';
 import styles from './book.module.css';
 
@@ -11,8 +12,12 @@ export default function BookFlow() {
   const [step, setStep] = useState<'form' | 'calendly'>('form');
   const [lead, setLead] = useState<{ name?: string; email?: string }>({});
 
+  // Reading window.location.hash can't happen during SSR, so the initial
+  // state above must be 'form' on both server and first client render (to
+  // avoid a hydration mismatch) and switch to 'calendly' right after mount.
   useEffect(() => {
     if (window.location.hash === '#calendly') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStep('calendly');
     }
   }, []);
@@ -65,6 +70,7 @@ export default function BookFlow() {
           </div>
         )}
       </section>
+      <Footer />
     </>
   );
 }

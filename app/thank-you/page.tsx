@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Nav from '@/components/Nav';
 import CtaLink from '@/components/CtaLink';
 import VideoEmbed from '@/components/VideoEmbed';
+import Footer from '@/components/Footer';
 import { thankYouPage, hero, site } from '@/lib/content';
 import styles from './thankyou.module.css';
 
@@ -47,6 +48,7 @@ export default async function ThankYouPage({
           </div>
         )}
       </section>
+      <Footer />
     </>
   );
 }

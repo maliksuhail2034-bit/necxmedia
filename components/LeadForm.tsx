@@ -101,6 +101,7 @@ export default function LeadForm({
               placeholder={field.placeholder}
               value={values[field.id] || ''}
               onChange={(e) => handleChange(field.id, e.target.value)}
+              disabled={submitting}
             />
           ) : (
             <input
@@ -111,6 +112,7 @@ export default function LeadForm({
               placeholder={field.placeholder}
               value={values[field.id] || ''}
               onChange={(e) => handleChange(field.id, e.target.value)}
+              disabled={submitting}
             />
           )}
         </div>
@@ -119,6 +121,7 @@ export default function LeadForm({
       {error && <p className={styles.error}>{error}</p>}
 
       <button type="submit" className={`${styles.submit} btnPrimary`} disabled={submitting}>
+        {submitting && <span className={styles.spinner} aria-hidden="true" />}
         {submitting ? 'Submitting…' : submitLabel}
       </button>
     </form>

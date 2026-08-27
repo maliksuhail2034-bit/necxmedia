@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import type { MouseEvent as ReactMouseEvent } from 'react';
+import Image from 'next/image';
 import Icon from './Icon';
 import { trackEvent } from '@/lib/analytics';
 import styles from './VideoEmbed.module.css';
@@ -296,6 +297,17 @@ export default function VideoEmbed({
           </div>
         )}
 
+        {!started && (
+          <Image
+            src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, 680px"
+            className={styles.poster}
+            priority
+          />
+        )}
+
         {(!started || ended) && (
           <button
             type="button"
@@ -304,9 +316,7 @@ export default function VideoEmbed({
             aria-label={ended ? 'Watch again' : playLabel}
             style={
               !started
-                ? {
-                    backgroundImage: `linear-gradient(160deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 100%), url(https://i.ytimg.com/vi/${videoId}/hqdefault.jpg)`,
-                  }
+                ? { backgroundImage: 'linear-gradient(160deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.65) 100%)' }
                 : undefined
             }
           >

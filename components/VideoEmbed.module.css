@@ -38,6 +38,11 @@
   cursor: pointer;
 }
 
+.poster {
+  z-index: 0;
+  object-fit: cover;
+}
+
 .overlay {
   position: absolute;
   inset: 0;
@@ -47,8 +52,6 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(160deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.55) 100%);
-  background-size: cover;
-  background-position: center;
   cursor: pointer;
   border: none;
   padding: 0;

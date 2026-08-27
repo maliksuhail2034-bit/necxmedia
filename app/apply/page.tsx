@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Nav from '@/components/Nav';
 import LeadForm from '@/components/LeadForm';
+import Footer from '@/components/Footer';
 import { applyPage, site } from '@/lib/content';
 import styles from './apply.module.css';
 
@@ -22,6 +23,7 @@ export default function ApplyPage() {
         </div>
         <LeadForm />
       </section>
+      <Footer />
     </>
   );
 }
