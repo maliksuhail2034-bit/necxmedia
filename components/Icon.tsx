@@ -14,7 +14,9 @@ export type IconName =
   | 'volumeOn'
   | 'volumeOff'
   | 'fullscreen'
-  | 'exitFullscreen';
+  | 'exitFullscreen'
+  | 'menu'
+  | 'close';
 
 const paths: Record<IconName, React.ReactNode> = {
   funnel: (
@@ -110,6 +112,8 @@ const paths: Record<IconName, React.ReactNode> = {
   exitFullscreen: (
     <path d="M9 3v3a2 2 0 0 1-2 2H4M15 3v3a2 2 0 0 0 2 2h3M21 15h-3a2 2 0 0 0-2 2v3M9 21v-3a2 2 0 0 0-2-2H4" />
   ),
+  menu: <path d="M3 6h18M3 12h18M3 18h18" />,
+  close: <path d="M18 6 6 18M6 6l12 12" />,
 };
 
 export default function Icon({

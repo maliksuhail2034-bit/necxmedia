@@ -1,0 +1,93 @@
+.trigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  cursor: pointer;
+  color: var(--dark);
+}
+.triggerIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.panel {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  padding: 0 5vw 40px;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease;
+}
+.panelHeader {
+  display: flex;
+  justify-content: flex-end;
+  height: 68px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  cursor: pointer;
+  color: var(--dark);
+}
+.closeIcon {
+  width: 20px;
+  height: 20px;
+}
+.panelLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 12px 0 32px;
+}
+.panelLinks a {
+  display: block;
+  padding: 18px 2px;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--dark);
+  border-bottom: 1px solid var(--border);
+}
+.panelCta {
+  display: block;
+  text-align: center;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 16px 28px;
+  border-radius: 100px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 860px) {
+  .trigger {
+    display: flex;
+  }
+}

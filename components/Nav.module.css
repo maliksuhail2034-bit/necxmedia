@@ -21,6 +21,12 @@
   color: var(--dark);
 }
 
+.right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
 .links {
   list-style: none;
   display: flex;
@@ -57,6 +63,9 @@
 @media (max-width: 860px) {
   .links {
     display: none;
+  }
+  .right {
+    gap: 12px;
   }
   .nav {
     padding: 16px 5vw;

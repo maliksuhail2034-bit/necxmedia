@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { nav, site } from '@/lib/content';
+import NavMobileMenu from './NavMobileMenu';
 import styles from './Nav.module.css';
 
 export default function Nav({ minimal = false }: { minimal?: boolean }) {
@@ -9,7 +10,7 @@ export default function Nav({ minimal = false }: { minimal?: boolean }) {
         {site.name}
       </Link>
       {!minimal && (
-        <>
+        <div className={styles.right}>
           <ul className={styles.links}>
             {nav.links.map((link) => (
               <li key={link.href}>
@@ -20,7 +21,8 @@ export default function Nav({ minimal = false }: { minimal?: boolean }) {
           <Link href={nav.cta.href} className={styles.cta}>
             {nav.cta.label}
           </Link>
-        </>
+          <NavMobileMenu links={nav.links} cta={nav.cta} />
+        </div>
       )}
     </nav>
   );
