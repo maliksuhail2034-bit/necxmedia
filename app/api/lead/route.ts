@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
 
   // Confirmation email is best-effort — a lead that's recorded but unconfirmed by
   // email still reaches us, so we don't fail the request over it.
-  sendLeadEmails({ name, email, companyWebsite }).catch((err) =>
+  sendLeadEmails({ name, email, companyWebsite, source }).catch((err) =>
     console.error('Lead confirmation email failed:', err)
   );
 

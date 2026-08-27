@@ -13,6 +13,7 @@ interface SendLeadEmailsInput {
   name: string;
   email: string;
   companyWebsite: string;
+  source: string;
 }
 
 export async function sendLeadEmails(input: SendLeadEmailsInput): Promise<void> {
@@ -24,6 +25,21 @@ export async function sendLeadEmails(input: SendLeadEmailsInput): Promise<void> 
   const apiKey = process.env.EMAIL_PROVIDER_API_KEY;
   const from = process.env.EMAIL_FROM as string;
   const internalTo = process.env.EMAIL_TO || site.contactEmail;
+  const firstName = escapeHtml(input.name.split(' ')[0]);
+  const isBook = input.source === 'book';
+
+  // /book is a booking request (the next step is picking a time), while
+  // /apply is a fuller application headed for manual review — the copy
+  // should reflect which one the lead actually just submitted.
+  const subject = isBook ? `Let's find a time, ${firstName}` : `Thanks for applying, ${firstName}`;
+  const html = isBook
+    ? `<p>Hi ${firstName},</p>
+<p>Thanks for reaching out about ${escapeHtml(input.companyWebsite || 'your business')}. Grab a time that works for you on the calendar: <a href="${site.calendlyUrl}">${site.calendlyUrl}</a></p>
+<p>— ${site.name}</p>`
+    : `<p>Hi ${firstName},</p>
+<p>Thanks for telling us about ${escapeHtml(input.companyWebsite || 'your business')}. We'll review what you shared and follow up shortly.</p>
+<p>If you'd rather not wait, you can grab a time on the calendar directly: <a href="${site.calendlyUrl}">${site.calendlyUrl}</a></p>
+<p>— ${site.name}</p>`;
 
   const confirmationToLead = fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -34,11 +50,8 @@ export async function sendLeadEmails(input: SendLeadEmailsInput): Promise<void> 
     body: JSON.stringify({
       from,
       to: input.email,
-      subject: `Thanks for applying, ${input.name.split(' ')[0]}`,
-      html: `<p>Hi ${escapeHtml(input.name.split(' ')[0])},</p>
-<p>Thanks for telling us about ${escapeHtml(input.companyWebsite || 'your business')}. We'll review what you shared and follow up shortly.</p>
-<p>If you'd rather not wait, you can grab a time on the calendar directly: <a href="${site.calendlyUrl}">${site.calendlyUrl}</a></p>
-<p>— ${site.name}</p>`,
+      subject,
+      html,
     }),
   });
 
@@ -51,8 +64,8 @@ export async function sendLeadEmails(input: SendLeadEmailsInput): Promise<void> 
     body: JSON.stringify({
       from,
       to: internalTo,
-      subject: `New application: ${input.name} (${input.companyWebsite || 'no company given'})`,
-      html: `<p>New lead application from <strong>${escapeHtml(input.name)}</strong> (${escapeHtml(
+      subject: `${isBook ? 'New booking request' : 'New application'}: ${input.name} (${input.companyWebsite || 'no company given'})`,
+      html: `<p>New ${isBook ? 'booking request' : 'lead application'} from <strong>${escapeHtml(input.name)}</strong> (${escapeHtml(
         input.email
       )}).</p>`,
     }),
