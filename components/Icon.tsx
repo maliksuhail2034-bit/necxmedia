@@ -9,7 +9,12 @@ export type IconName =
   | 'education'
   | 'conviction'
   | 'conversion'
-  | 'play';
+  | 'play'
+  | 'pause'
+  | 'volumeOn'
+  | 'volumeOff'
+  | 'fullscreen'
+  | 'exitFullscreen';
 
 const paths: Record<IconName, React.ReactNode> = {
   funnel: (
@@ -78,6 +83,32 @@ const paths: Record<IconName, React.ReactNode> = {
     <>
       <path d="M8 5.14v14l11-7-11-7z" fill="currentColor" stroke="none" />
     </>
+  ),
+  pause: (
+    <>
+      <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none" />
+      <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  volumeOn: (
+    <>
+      <path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none" />
+      <path d="M16.5 8.5a5 5 0 0 1 0 7" />
+      <path d="M19.5 5.5a9 9 0 0 1 0 13" />
+    </>
+  ),
+  volumeOff: (
+    <>
+      <path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor" stroke="none" />
+      <line x1="16" y1="9" x2="22" y2="15" />
+      <line x1="22" y1="9" x2="16" y2="15" />
+    </>
+  ),
+  fullscreen: (
+    <path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3" />
+  ),
+  exitFullscreen: (
+    <path d="M9 3v3a2 2 0 0 1-2 2H4M15 3v3a2 2 0 0 0 2 2h3M21 15h-3a2 2 0 0 0-2 2v3M9 21v-3a2 2 0 0 0-2-2H4" />
   ),
 };
 

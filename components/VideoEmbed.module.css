@@ -15,23 +15,40 @@
   background: #000;
 }
 
-.ytWrap iframe {
+.ytTarget {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.ytTarget iframe {
   width: 100%;
   height: 100%;
   border: none;
 }
 
+.tapZone {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 .overlay {
   position: absolute;
   inset: 0;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background: linear-gradient(160deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.55) 100%);
+  background-size: cover;
+  background-position: center;
   cursor: pointer;
   border: none;
   padding: 0;
@@ -65,6 +82,72 @@
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.04em;
+}
+
+.controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 10px 14px 12px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+.controlsVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.progressTrack {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.progressFill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--orange);
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.controlsRow button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.controlsRow button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+.controlIcon {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+.time {
+  margin-left: 4px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+.spacer {
+  flex: 1;
 }
 
 .fallback {
