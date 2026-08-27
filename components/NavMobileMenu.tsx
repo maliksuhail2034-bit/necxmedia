@@ -10,16 +10,10 @@ type NavLink = { href: string; label: string };
 export default function NavMobileMenu({ links, cta }: { links: NavLink[]; cta: NavLink }) {
   const [open, setOpen] = useState(false);
 
-  // next/link's client-side hash navigation doesn't reliably scroll to the
-  // target section from inside this overlay, so scroll manually instead.
-  function handleSectionClick(e: React.MouseEvent, href: string) {
-    e.preventDefault();
+  // Plain anchors (not next/link), so the browser's own default hash
+  // navigation does the scrolling — we only need to close the panel.
+  function handleSectionClick() {
     setOpen(false);
-    const id = href.replace('#', '');
-    requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      history.replaceState(null, '', href);
-    });
   }
 
   return (
@@ -49,9 +43,9 @@ export default function NavMobileMenu({ links, cta }: { links: NavLink[]; cta: N
           <ul className={styles.panelLinks}>
             {links.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} onClick={(e) => handleSectionClick(e, link.href)}>
+                <a href={link.href} onClick={handleSectionClick}>
                   {link.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

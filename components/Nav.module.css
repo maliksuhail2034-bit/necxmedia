@@ -30,7 +30,7 @@
 .links {
   list-style: none;
   display: flex;
-  gap: 32px;
+  gap: 24px;
 }
 
 .links a {
@@ -38,6 +38,7 @@
   font-weight: 500;
   color: var(--mid);
   letter-spacing: 0.02em;
+  white-space: nowrap;
   transition: color 0.18s;
 }
 .links a:hover {
@@ -54,13 +55,14 @@
   border: none;
   cursor: pointer;
   display: inline-block;
+  white-space: nowrap;
   transition: background 0.2s;
 }
 .cta:hover {
   background: var(--orangedk);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1400px) {
   .links {
     display: none;
   }

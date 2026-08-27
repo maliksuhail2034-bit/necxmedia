@@ -20,7 +20,9 @@ export const nav = {
     { label: 'The Problem', href: '/#problem' },
     { label: 'How It Works', href: '/#howitworks' },
     { label: 'The System', href: '/#system' },
+    { label: 'Funnel', href: '/#funnel' },
     { label: 'Who We Help', href: '/#whowehelp' },
+    { label: 'FAQ', href: '/#faq' },
   ],
   cta: { label: 'Book a Strategy Call', href: '/book' },
 };
