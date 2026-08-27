@@ -5,11 +5,20 @@ import { useRouter } from 'next/navigation';
 import { applyFields, applyPage } from '@/lib/content';
 import { getStoredUtm } from '@/lib/utm';
 import { trackEvent } from '@/lib/analytics';
-import styles from './ApplyForm.module.css';
+import styles from './LeadForm.module.css';
 
 type FormState = Record<string, string>;
+type Field = { id: string; label: string; type: 'text' | 'email' | 'textarea'; required: boolean; placeholder?: string };
 
-export default function ApplyForm() {
+export default function LeadForm({
+  fields = applyFields,
+  source = 'apply',
+  submitLabel = applyPage.submitLabel,
+}: {
+  fields?: Field[];
+  source?: string;
+  submitLabel?: string;
+}) {
   const router = useRouter();
   const [values, setValues] = useState<FormState>({});
   const [submitting, setSubmitting] = useState(false);
@@ -35,7 +44,7 @@ export default function ApplyForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...values,
-          source: 'apply',
+          source,
           landingPage: typeof window !== 'undefined' ? window.location.href : '',
           utm: getStoredUtm(),
         }),
@@ -72,7 +81,7 @@ export default function ApplyForm() {
         />
       </div>
 
-      {applyFields.map((field) => (
+      {fields.map((field) => (
         <div className={styles.field} key={field.id}>
           <label className={styles.label} htmlFor={field.id}>
             {field.label}
@@ -104,7 +113,7 @@ export default function ApplyForm() {
       {error && <p className={styles.error}>{error}</p>}
 
       <button type="submit" className={`${styles.submit} btnPrimary`} disabled={submitting}>
-        {submitting ? 'Submitting…' : applyPage.submitLabel}
+        {submitting ? 'Submitting…' : submitLabel}
       </button>
     </form>
   );

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Nav from '@/components/Nav';
-import ApplyForm from '@/components/ApplyForm';
+import LeadForm from '@/components/LeadForm';
 import { applyPage, site } from '@/lib/content';
 import styles from './apply.module.css';
 
@@ -20,7 +20,7 @@ export default function ApplyPage() {
           <h1 className={styles.heading}>{applyPage.heading}</h1>
           <p className={styles.intro}>{applyPage.intro}</p>
         </div>
-        <ApplyForm />
+        <LeadForm />
       </section>
     </>
   );

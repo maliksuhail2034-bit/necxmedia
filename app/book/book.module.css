@@ -68,7 +68,42 @@
   color: var(--light);
 }
 
+.formBlock {
+  max-width: 560px;
+  margin: 0 auto 48px;
+  padding: 40px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+.formHeading {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+  text-align: center;
+}
+.formIntro {
+  font-size: 0.92rem;
+  color: var(--mid);
+  line-height: 1.6;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.orDivider {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--light);
+  margin-bottom: 32px;
+}
+
 @media (max-width: 640px) {
+  .formBlock {
+    padding: 28px 20px;
+  }
   .section {
     padding: 120px 5vw 60px;
   }

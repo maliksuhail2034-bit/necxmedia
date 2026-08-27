@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Nav from '@/components/Nav';
 import CalendlyEmbed from '@/components/CalendlyEmbed';
-import { bookPage, site } from '@/lib/content';
+import LeadForm from '@/components/LeadForm';
+import { bookPage, bookFormFields, site } from '@/lib/content';
 import styles from './book.module.css';
 
 export const metadata: Metadata = {
@@ -26,7 +27,18 @@ export default function BookPage() {
           </ul>
           <p className={styles.forWho}>{bookPage.forWho}</p>
         </div>
-        <CalendlyEmbed calendlyUrl={site.calendlyUrl} />
+
+        <div className={styles.formBlock}>
+          <h2 className={styles.formHeading}>{bookPage.formHeading}</h2>
+          <p className={styles.formIntro}>{bookPage.formIntro}</p>
+          <LeadForm fields={bookFormFields} source="book" submitLabel={bookPage.submitLabel} />
+        </div>
+
+        <p className={styles.orDivider}>{bookPage.orDivider}</p>
+
+        <div id="calendly">
+          <CalendlyEmbed calendlyUrl={site.calendlyUrl} />
+        </div>
       </section>
     </>
   );

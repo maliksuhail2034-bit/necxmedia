@@ -34,7 +34,10 @@ export async function POST(request: NextRequest) {
   const source = clean(body.source) || 'website';
   const landingPage = clean(body.landingPage);
 
-  if (!name || !email || !companyWebsite || !whatDoesCompanyDo || !whatToImprove || !biggestProblem) {
+  // The full /apply form asks for a fuller picture; the short /book form only
+  // needs enough to reach out and schedule, so it skips the deeper-dive fields.
+  const requiresFullDetail = source !== 'book';
+  if (!name || !email || !companyWebsite || (requiresFullDetail && (!whatDoesCompanyDo || !whatToImprove || !biggestProblem))) {
     return NextResponse.json(
       { ok: false, error: 'Please fill in all required fields.' },
       { status: 400 }

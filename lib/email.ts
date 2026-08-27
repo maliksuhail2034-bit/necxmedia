@@ -36,8 +36,8 @@ export async function sendLeadEmails(input: SendLeadEmailsInput): Promise<void> 
       to: input.email,
       subject: `Thanks for applying, ${input.name.split(' ')[0]}`,
       html: `<p>Hi ${escapeHtml(input.name.split(' ')[0])},</p>
-<p>Thanks for telling us about ${escapeHtml(input.companyWebsite || 'your business')}. We'll review your application and follow up shortly.</p>
-<p>If you'd rather not wait, you can book a strategy call directly: <a href="${site.domain}/book">${site.domain}/book</a></p>
+<p>Thanks for telling us about ${escapeHtml(input.companyWebsite || 'your business')}. We'll review what you shared and follow up shortly.</p>
+<p>If you'd rather not wait, you can grab a time on the calendar directly: <a href="${site.calendlyUrl}">${site.calendlyUrl}</a></p>
 <p>— ${site.name}</p>`,
     }),
   });

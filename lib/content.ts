@@ -318,6 +318,31 @@ export const applyFields: {
   },
 ];
 
+export const bookFormFields: {
+  id: 'name' | 'email' | 'companyWebsite' | 'biggestProblem';
+  label: string;
+  type: 'text' | 'email' | 'textarea';
+  required: boolean;
+  placeholder?: string;
+}[] = [
+  { id: 'name', label: 'Name', type: 'text', required: true, placeholder: 'Your full name' },
+  { id: 'email', label: 'Work email', type: 'email', required: true, placeholder: 'you@company.com' },
+  {
+    id: 'companyWebsite',
+    label: 'Company / Website',
+    type: 'text',
+    required: true,
+    placeholder: 'Company name and website',
+  },
+  {
+    id: 'biggestProblem',
+    label: 'What are you looking to fix?',
+    type: 'textarea',
+    required: false,
+    placeholder: 'Optional — a sentence or two is plenty',
+  },
+];
+
 export const bookPage = {
   eyebrow: 'Book a Call',
   heading: "Let's see whether we can solve this.",
@@ -329,6 +354,10 @@ export const bookPage = {
     "We tell you plainly whether we think it's a fit — no pressure, no pitch deck.",
   ],
   forWho: 'For founders with a proven offer who are ready to stop explaining it on every call.',
+  formHeading: 'Tell us where to reach you.',
+  formIntro: "Share a few details and we'll set up a time that works. Prefer to skip the wait? Grab a slot on the calendar below instead.",
+  submitLabel: 'Request a Strategy Call',
+  orDivider: 'Or pick a time yourself right now:',
 };
 
 export const thankYouPage = {
@@ -340,7 +369,7 @@ export const thankYouPage = {
     heading: "You're booked.",
     body: "We'll see you on the call. In the meantime, here's the overview video if you'd like a head start.",
   },
-  cta: { label: 'Book a Strategy Call', href: '/book' },
+  cta: { label: 'Book a Strategy Call', href: '/book#calendly' },
 };
 
 export const footer = {
