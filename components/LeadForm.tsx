@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { applyFields, applyPage } from '@/lib/content';
+import { applyFields, applyPage, site } from '@/lib/content';
 import { getStoredUtm } from '@/lib/utm';
 import { trackEvent } from '@/lib/analytics';
 import styles from './LeadForm.module.css';
@@ -40,10 +40,19 @@ export default function LeadForm({
     setError(null);
     setSubmitting(true);
 
+    if (!site.leadWebhookUrl) {
+      setError(`This form is not fully configured yet. Please email us at ${site.contactEmail}.`);
+      setSubmitting(false);
+      return;
+    }
+
     try {
-      const res = await fetch('/api/lead', {
+      // Posts straight to the Apps Script Web App. No custom headers on purpose:
+      // a text/plain body keeps this a CORS "simple request" (Apps Script can't
+      // answer a preflight), and the script parses the JSON itself.
+      const res = await fetch(site.leadWebhookUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        redirect: 'follow',
         body: JSON.stringify({
           ...values,
           source,

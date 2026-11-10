@@ -9,6 +9,11 @@ export const site = {
   contactEmail: 'suhail@necxmedia.com',
   calendlyUrl:
     'https://calendly.com/maliksuhail2034/30min?hide_gdpr_banner=1&background_color=111108&text_color=faf8f4&primary_color=e8531a',
+  // Apps Script Web App endpoint the lead forms post to directly (the site is a
+  // static export on GitHub Pages, so there is no server route). The script
+  // validates, appends to the "Leads" sheet, and sends the confirmation emails.
+  // Supplied at build time (GitHub Actions secret / .env.local), not committed.
+  leadWebhookUrl: process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL || '',
   youtubeVideoId: process.env.NEXT_PUBLIC_YOUTUBE_VIDEO_ID || 'Df_MkNlI9CM',
   metaTitle: 'NECXMEDIA — Leads That Already Understand You',
   metaDescription:
